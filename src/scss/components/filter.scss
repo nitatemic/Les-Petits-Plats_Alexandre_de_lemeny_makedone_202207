@@ -1,0 +1,44 @@
+/* Filters */
+
+/* Ingredient */
+.filter-button {
+  border: none;
+}
+
+#button-ingredients, #input-ingredients, #input-ingredients::placeholder {
+  background-color: dodgerblue;
+  color: white;
+}
+
+#button-ingredients:hover {
+  background-color: lightblue;
+}
+
+/* /Ingredient */
+
+/* Appareils */
+
+#button-appareils, #input-appareils, #input-appareils::placeholder {
+  background-color: mediumseagreen; /* TODO : Choose a Better Color */
+  color: white;
+}
+
+#button-appareils:hover {
+  background-color: lightgreen;
+}
+
+/* /Appareils */
+
+/* Ustensiles */
+
+#button-ustensiles, #input-ustensiles, #input-ustensiles::placeholder {
+  background-color: hotpink; /* TODO : Choose a Better Color */
+  color: white;
+}
+
+#button-ustensiles:hover {
+  background-color: lightpink; /* TODO : Choose a Better Color */
+}
+
+/* /Ustensiles */
+/* /Filters */

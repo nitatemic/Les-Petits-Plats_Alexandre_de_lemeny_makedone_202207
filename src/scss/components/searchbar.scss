@@ -1,0 +1,14 @@
+/* Search Bar */
+.form-control, #button-addon2, .form-control:focus{
+  border-radius: 5px;
+  background-color: lightgrey;
+  border: none;
+  height: 4rem;
+}
+
+#button-addon2 {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  color: black;
+}
+/* /Search Bar */
