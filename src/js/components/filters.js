@@ -28,22 +28,11 @@ export const filterEvents = () => {
 			if (filtersIcons[index].classList.contains('fa-chevron-down')) {
 				filtersIcons[index].classList.remove('fa-chevron-down');
 				filtersIcons[index].classList.add('fa-chevron-up');
+				filtersDiv[index].classList.add('filterFocus');
 			} else {
 				filtersIcons[index].classList.remove('fa-chevron-up');
 				filtersIcons[index].classList.add('fa-chevron-down');
-			}
-		});
-	});
-
-	filtersInputs.forEach((input, index) => {
-		input.addEventListener('keyup', () => {
-			if (filtersInputs[index].value.length >= 3) {
-				filtersIcons[index].classList.remove('fa-chevron-down');
-				filtersIcons[index].classList.add('fa-chevron-up');
-			}
-			else {
-				filtersIcons[index].classList.remove('fa-chevron-up');
-				filtersIcons[index].classList.add('fa-chevron-down');
+				filtersDiv[index].classList.remove('filterFocus');
 			}
 		});
 	});
@@ -52,10 +41,14 @@ export const filterEvents = () => {
 	filtersInputs.forEach((input, index) => {
 		input.addEventListener('focus', () => {
 			filtersDiv[index].classList.add('filterFocus');
+				filtersIcons[index].classList.remove('fa-chevron-down');
+				filtersIcons[index].classList.add('fa-chevron-up');
 		}
 		, false);
 		input.addEventListener('blur', () => {
 			filtersDiv[index].classList.remove('filterFocus');
+				filtersIcons[index].classList.remove('fa-chevron-up');
+				filtersIcons[index].classList.add('fa-chevron-down');
 		}
 		, false);
 	});
