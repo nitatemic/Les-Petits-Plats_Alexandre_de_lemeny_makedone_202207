@@ -1,9 +1,11 @@
-
-
 /* Events listeners on filter */
 export const filterEvents = () => {
 
 	/* Getting the elements from the DOM. */
+	const filterIngredients = document.getElementById('filter-ingredients');
+	const filterAppareils = document.getElementById('filter-appareils');
+	const filterUstensiles = document.getElementById('filter-ustensiles');
+
 	const inputIngredients = document.getElementById('input-ingredients');
 	const inputAppareils = document.getElementById('input-appareils');
 	const inputUstensiles = document.getElementById('input-ustensiles');
@@ -16,6 +18,7 @@ export const filterEvents = () => {
 	const iconAppareils = document.getElementById('icon-appareils');
 	const iconUstensiles = document.getElementById('icon-ustensiles');
 
+	const filtersDiv = [filterIngredients, filterAppareils, filterUstensiles];
 	const filtersInputs = [inputIngredients, inputAppareils, inputUstensiles];
 	const filtersButtons = [buttonIngredients, buttonAppareils, buttonUstensiles];
 	const filtersIcons = [iconIngredients, iconAppareils, iconUstensiles];
@@ -32,7 +35,6 @@ export const filterEvents = () => {
 		});
 	});
 
-
 	filtersInputs.forEach((input, index) => {
 		input.addEventListener('keyup', () => {
 			if (filtersInputs[index].value.length >= 3) {
@@ -45,4 +47,17 @@ export const filterEvents = () => {
 			}
 		});
 	});
+
+	/* Lorsque l'on focus un input de filter, on ajoute lui la class focus lorsqu'on le blur, on l'enlève */
+	filtersInputs.forEach((input, index) => {
+		input.addEventListener('focus', () => {
+			filtersDiv[index].classList.add('filterFocus');
+		}
+		, false);
+		input.addEventListener('blur', () => {
+			filtersDiv[index].classList.remove('filterFocus');
+		}
+		, false);
+	});
 };
+

@@ -1,10 +1,20 @@
 /* Filters */
 
-/* Ingredient */
 .filter-button {
   border: none;
 }
 
+/* Animations */
+.filterFocus {
+  width: 100%;
+  transition : width 0.3s ease-in-out;
+}
+
+#filter-container > * {
+  transition : width 0.3s ease-in-out;
+}/* /Animations */
+
+/* Ingredient */
 #button-ingredients, #input-ingredients, #input-ingredients::placeholder {
   background-color: dodgerblue;
   color: white;
