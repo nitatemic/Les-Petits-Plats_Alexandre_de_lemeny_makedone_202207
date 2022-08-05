@@ -3,8 +3,9 @@ import * as bootstrap from 'bootstrap'
 
 // Import our custom CSS
 import '../scss/main.scss'
-import { recipes } from '../data/recipes.js'
 import { filterEvents } from './components/filters';
+import { testFunctions } from './components/recipes';
 
 filterEvents();
-console.log(recipes);
+testFunctions();
+

@@ -6,9 +6,18 @@
   height: 4rem;
 }
 
-#button-addon2 {
+#button-search {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
   color: black;
+  background-color: lightgrey;
+  border: none;
+  transition: all 0.3s ease-in-out;
 }
+
+#button-search:hover {
+  background-color: grey;
+  transition: all 0.3s ease-in-out;
+}
+
 /* /Search Bar */

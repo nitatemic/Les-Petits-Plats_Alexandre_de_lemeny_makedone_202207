@@ -18,10 +18,12 @@
 #button-ingredients, #input-ingredients, #input-ingredients::placeholder {
   background-color: dodgerblue;
   color: white;
+  transition: all 0.3s ease-in-out;
 }
 
 #button-ingredients:hover {
   background-color: lightblue;
+  transition: all 0.3s ease-in-out;
 }
 
 /* /Ingredient */
@@ -31,10 +33,12 @@
 #button-appareils, #input-appareils, #input-appareils::placeholder {
   background-color: mediumseagreen; /* TODO : Choose a Better Color */
   color: white;
+  transition: all 0.3s ease-in-out;
 }
 
 #button-appareils:hover {
   background-color: lightgreen;
+  transition: all 0.3s ease-in-out;
 }
 
 /* /Appareils */
@@ -44,10 +48,12 @@
 #button-ustensiles, #input-ustensiles, #input-ustensiles::placeholder {
   background-color: hotpink; /* TODO : Choose a Better Color */
   color: white;
+  transition: all 0.3s ease-in-out;
 }
 
 #button-ustensiles:hover {
   background-color: lightpink; /* TODO : Choose a Better Color */
+  transition: all 0.3s ease-in-out;
 }
 
 /* /Ustensiles */
