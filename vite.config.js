@@ -11,12 +11,8 @@ export default {
 		port: 8080,
 		hot: true
 	},
-	//Build config for production
-	//Export to dist folder
+//Config Vite to build in ./dist/ folder
 	build: {
-		rollupOptions: {
-
-			// https://rollupjs.org/guide/en/#big-list-of-options
-		}
+		outDir: '../dist'
 	}
 }

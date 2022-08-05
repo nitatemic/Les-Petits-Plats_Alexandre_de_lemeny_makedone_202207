@@ -37,7 +37,6 @@ export const filterEvents = () => {
 		});
 	});
 
-	/* Lorsque l'on focus un input de filter, on ajoute lui la class focus lorsqu'on le blur, on l'enlève */
 	filtersInputs.forEach((input, index) => {
 		input.addEventListener('focus', () => {
 			filtersDiv[index].classList.add('filterFocus');
