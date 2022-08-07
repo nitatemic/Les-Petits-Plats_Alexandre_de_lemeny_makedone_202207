@@ -1,0 +1,32 @@
+.ul-ingredients {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ul-ingredients > li {
+  font-size : .7rem;
+}
+
+.eta {
+  font-weight: bold;
+}
+
+.recipe-description-container{
+  height: 7rem;
+  overflow: hidden;
+}
+
+.recipe-description {
+  width: 100%;
+  font-size: .7rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card {
+  height: 20rem;
+}
+

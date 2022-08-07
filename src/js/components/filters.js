@@ -51,5 +51,7 @@ export const filterEvents = () => {
 		}
 		, false);
 	});
+
+	//TODO : Event listener on dropdown  (https://getbootstrap.com/docs/5.2/components/dropdowns/#events)
 };
 

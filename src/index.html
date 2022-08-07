@@ -18,16 +18,22 @@
           <button class="btn btn-outline-secondary" type="button" id="button-search"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
         <!-- Filters -->
-        <div class="mb-3 w-100 d-inline-flex justify-content-start" id="filter-container">
-          <div class="input-group mb-3 me-3 w-15" id="filter-ingredients">
+        <div class="mb-3 w-100 d-flex justify-content-start" id="filter-container">
+          <div class="input-group mb-3 me-3 w-auto" id="filter-ingredients">
             <input type="text" class="form-control filter-input" placeholder="Ingrédients" aria-label="Ingrédients" aria-describedby="button-ingredients" id="input-ingredients">
-            <button class="btn btn-outline-secondary filter-button" type="button" id="button-ingredients"><i class="fa-solid fa-chevron-down" id="icon-ingredients"></i></button>
+            <button class="btn btn-outline-secondary filter-button dropdown-toggle dropdown-toggle-split" type="button" id="button-ingredients" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"><i class="fa-solid fa-chevron-down" id="icon-ingredients"></i></button>
+            <ul class="dropdown-menu" id="list-ingredients">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <li><a class="dropdown-item" href="#">Separated link</a></li>
+            </ul>
           </div>
-          <div class="input-group mb-3 me-3 w-15" id="filter-appareils">
+          <div class="input-group mb-3 me-3 w-auto" id="filter-appareils">
             <input type="text" class="form-control filter-input" placeholder="Appareils" aria-label="Appareils" aria-describedby="button-appareils" id="input-appareils">
             <button class="btn btn-outline-secondary filter-button" type="button" id="button-appareils"><i class="fa-solid fa-chevron-down" id="icon-appareils"></i></button>
           </div>
-          <div class="input-group mb-3 me-3 w-15" id="filter-ustensiles">
+          <div class="input-group mb-3 me-3 w-auto" id="filter-ustensiles">
             <input type="text" class="form-control filter-input" placeholder="Ustensiles" aria-label="Ustensiles" aria-describedby="button-ustensiles" id="input-ustensiles">
             <button class="btn btn-outline-secondary filter-button" type="button" id="button-ustensiles"><i class="fa-solid fa-chevron-down" id="icon-ustensiles"></i></button>
           </div>
@@ -35,5 +41,15 @@
         <!-- /Filters -->
     </div>
   </div>
+    <!--- Recipes -->
+    <div class="py-5">
+      <div class="container">
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="card-container">
+
+        </div>
+      </div>
+    </div>
+<!--- /Recipes -->
 </body>
 </html>

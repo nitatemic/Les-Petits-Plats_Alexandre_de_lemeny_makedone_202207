@@ -1,6 +1,8 @@
 const path = require('path')
+import {defineConfig} from'vite'
+import mkcert from'vite-plugin-mkcert'
 
-export default {
+export default defineConfig({
 	root: path.resolve(__dirname, 'src'),
 	resolve: {
 		alias: {
@@ -9,10 +11,12 @@ export default {
 	},
 	server: {
 		port: 8080,
-		hot: true
+		hot: true,
+		https : true
 	},
-//Config Vite to build in ./dist/ folder
+	plugins: [mkcert()],
+	//Config Vite to build in ./dist/ folder
 	build: {
 		outDir: '../dist'
 	}
-}
+});

@@ -1,5 +1,19 @@
 /* Filters */
 
+/* Bootstrap override */
+.dropdown-toggle::after {
+  content: none;
+}
+
+#list-ingredients > li > a {
+  color: white;
+}
+
+#list-ingredients > li:hover > a {
+  color: black;
+}
+/* /Bootstrap override */
+
 .filter-button {
   border: none;
 }
@@ -15,8 +29,8 @@
 }/* /Animations */
 
 /* Ingredient */
-#button-ingredients, #input-ingredients, #input-ingredients::placeholder {
-  background-color: dodgerblue;
+#button-ingredients, #input-ingredients, #input-ingredients::placeholder, #filter-ingredients > .dropdown-menu, #filter-ingredients > .dropdown-menu > .dropdown-item {
+  background-color: #3282F7;
   color: white;
   transition: all 0.3s ease-in-out;
 }
@@ -31,7 +45,7 @@
 /* Appareils */
 
 #button-appareils, #input-appareils, #input-appareils::placeholder {
-  background-color: mediumseagreen; /* TODO : Choose a Better Color */
+  background-color: #68D9A4;
   color: white;
   transition: all 0.3s ease-in-out;
 }
@@ -46,15 +60,14 @@
 /* Ustensiles */
 
 #button-ustensiles, #input-ustensiles, #input-ustensiles::placeholder {
-  background-color: hotpink; /* TODO : Choose a Better Color */
+  background-color: #ED6454;
   color: white;
   transition: all 0.3s ease-in-out;
 }
 
 #button-ustensiles:hover {
-  background-color: lightpink; /* TODO : Choose a Better Color */
+  background-color: lightpink;
   transition: all 0.3s ease-in-out;
 }
-
 /* /Ustensiles */
 /* /Filters */
