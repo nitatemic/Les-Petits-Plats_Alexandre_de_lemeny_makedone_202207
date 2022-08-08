@@ -119,3 +119,23 @@ export function listAllUtensils (recipes) {
 		});
 		console.log(listAllIngredients(recipes));
 	}
+
+	/* /For each recipe call listIngredients, listAppliance and listUtensils */
+
+/* Search by keyword from 3 letters  */
+document.getElementById('searchbar').addEventListener('keyup', function (e) {
+	let keyword = e.target.value;
+	let result = [];
+	recipes.forEach(recipe => {
+		if (recipe.name.includes(keyword)) {
+			result.push(recipe);
+		}
+	}
+	);
+	document.getElementById('card-container').innerHTML = '';
+	result.forEach(recipe => {
+		let recipeModel = factoryRecipe(recipe);
+		document.getElementById('card-container').innerHTML += recipeModel.returnDOM(recipe);
+	}
+	);
+});
