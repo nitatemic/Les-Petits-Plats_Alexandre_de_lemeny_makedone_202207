@@ -1,5 +1,3 @@
-/* Filters */
-
 /* Bootstrap override */
 .dropdown-toggle::after {
   content: none;
@@ -13,6 +11,38 @@
   color: black;
 }
 /* /Bootstrap override */
+
+/* Tags */
+.tag {
+  border-radius: 5px;
+  font-size : 0.8em;
+  padding: 0.3rem .6rem;
+  margin-right : 0.5rem;
+}
+/* Ingredients tags */
+.ingredients-tag {
+  color : white;
+  background-color: #3282F7;
+}
+/* /Ingredients tags */
+/* Appareils tags */
+.appareils-tag {
+  color : white;
+
+  background-color: #68D9A4;
+}
+/* /Appareils tags */
+/* Ustensiles tags */
+.ustensiles-tag {
+  color : white;
+  background-color: #ED6454;
+}
+/* /Ustensiles tags */
+
+.close-tag {
+  margin-left: .5rem;
+}
+/* Filters */
 
 .filter-button {
   border: none;

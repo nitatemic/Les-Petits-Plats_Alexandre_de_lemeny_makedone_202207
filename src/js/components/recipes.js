@@ -1,12 +1,7 @@
 import { recipes } from '../../data/recipes.js';
 
-export function testRecipes () {
-	console.log(recipes);
-}
-
 /* Factory recipes */
 	export function factoryRecipe () {
-
 
 		function returnDOM (recipe) {
 			return `
@@ -37,33 +32,9 @@ export function testRecipes () {
 		`;
 		}
 
-
-
-
-		/* List of all the ingredients (without unit) */
-		function listIngredients (recipe) {
-			let ingredientsList = [];
-			recipe.ingredients.forEach(ingredient => {
-				ingredientsList.push(ingredient.ingredient);
-			});
-			return ingredientsList;
-		}
-		/* /List of all the ingredients (without unit) */
-
-		/* List of all the appliance */
-		function listAppliance (recipe) {
-			return [recipe.appliance];
-		}
-		/* /List of all the appliance */
-
-		/* List of all the utensils */
-		function listUtensils (recipe) {
-			return recipe.utensils
-		}
-		/* /List of all the utensils */
-	return { listIngredients, listAppliance, listUtensils, returnDOM };
+	return { returnDOM };
 	}
-	/* /Factory recipes */
+/* /Factory recipes */
 
 /* List all Ingredients */
 export function listAllIngredients (recipes) {
@@ -73,13 +44,12 @@ export function listAllIngredients (recipes) {
 			ingredientsList.push(ingredient.ingredient);
 		});
 	});
-
 	/* Remove duplicates */
 	return [...new Set(ingredientsList)].sort(); //FIXME
 	/* /Remove duplicates */
 }
 
-/* List all Appliance */
+/* ---- List all Appliance ----- */
 export function listAllAppliance (recipes) {
 	let applianceList = [];
 	recipes.forEach(recipe => {
@@ -105,24 +75,17 @@ export function listAllUtensils (recipes) {
 	/* /Remove duplicates */
 }
 
-
-
-
 	/* For each recipe call listIngredients, listAppliance and listUtensils */
 	export function testFunctions () {
-		recipes.forEach(recipe => {
-			let recipeModel = factoryRecipe(recipe);
-			console.log(recipeModel.listIngredients(recipe));
-			console.log(recipeModel.listAppliance(recipe));
-			console.log(recipeModel.listUtensils(recipe));
-			document.getElementById('card-container').innerHTML += recipeModel.returnDOM(recipe);
-		});
-		console.log(listAllIngredients(recipes));
+			let recipeModel = factoryRecipe(recipes);
+			recipes.forEach(recipe => {
+				document.getElementById('card-container').innerHTML += recipeModel.returnDOM(recipe);
+			})
 	}
 
 	/* /For each recipe call listIngredients, listAppliance and listUtensils */
 
-/* Search by keyword from 3 letters  */
+
 document.getElementById('searchbar').addEventListener('keyup', function (e) {
 	let keyword = e.target.value;
 	if (keyword.length < 3) {
@@ -130,15 +93,17 @@ document.getElementById('searchbar').addEventListener('keyup', function (e) {
 	}
 	let result = [];
 	recipes.forEach(recipe => {
-		if (recipe.name.toLowerCase().includes(keyword.toLowerCase()) || recipe.description.toLowerCase().includes(keyword.toLowerCase()) || recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(keyword.toLowerCase())) ) {
+		if (recipe.name.toLowerCase().includes(keyword.toLowerCase()) ||
+			recipe.description.toLowerCase().includes(keyword.toLowerCase()) ||
+			recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(keyword.toLowerCase()))
+		) {
 			result.push(recipe);
 		}
-	}
-	);
+	});
 	document.getElementById('card-container').innerHTML = '';
+	console.log(listAllIngredients(result));
 	result.forEach(recipe => {
 		let recipeModel = factoryRecipe(recipe);
 		document.getElementById('card-container').innerHTML += recipeModel.returnDOM(recipe);
-	}
-	);
+	});
 });
