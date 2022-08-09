@@ -130,7 +130,7 @@ document.getElementById('searchbar').addEventListener('keyup', function (e) {
 	}
 	let result = [];
 	recipes.forEach(recipe => {
-		if (recipe.name.toLowerCase().includes(keyword.toLowerCase())) {
+		if (recipe.name.toLowerCase().includes(keyword.toLowerCase()) || recipe.description.toLowerCase().includes(keyword.toLowerCase()) || recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(keyword.toLowerCase())) ) {
 			result.push(recipe);
 		}
 	}
