@@ -26,7 +26,7 @@ export function testRecipes () {
 		      <div class="d-flex justify-content-between align-items-start recipe-description-container">
 		        <!-- List of ingredients -->
 		        <ul class="ul-ingredients">
-					    ${recipe.ingredients.map(ingredient => `<li><p><span class="fw-bold">${ingredient.ingredient}: </span> ${ingredient.quantity} ${ingredient.unit ? ingredient.unit : ''}</p></li>`).join('')}
+					    ${recipe.ingredients.map(ingredient => `<li><p><span class="fw-bold">${ingredient.ingredient} </span> ${ingredient.quantity ? ': ' + ingredient.quantity : ''} ${ingredient.unit ? ingredient.unit : ''}</p></li>`).join('')}
 		        </ul>
 		        <!-- /List of ingredients -->
 		        <p class="recipe-description w-50">${recipe.description}</p>
