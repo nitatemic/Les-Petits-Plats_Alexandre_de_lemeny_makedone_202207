@@ -125,9 +125,12 @@ export function listAllUtensils (recipes) {
 /* Search by keyword from 3 letters  */
 document.getElementById('searchbar').addEventListener('keyup', function (e) {
 	let keyword = e.target.value;
+	if (keyword.length < 3) {
+		keyword = '';
+	}
 	let result = [];
 	recipes.forEach(recipe => {
-		if (recipe.name.includes(keyword)) {
+		if (recipe.name.toLowerCase().includes(keyword.toLowerCase())) {
 			result.push(recipe);
 		}
 	}
