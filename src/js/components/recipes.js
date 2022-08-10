@@ -1,4 +1,5 @@
 import { recipes } from '../../data/recipes.js';
+import { addAppareils, addIngredients, addUstensiles } from './filters.js';
 
 /* Factory recipes */
 	export function factoryRecipe () {
@@ -36,45 +37,6 @@ import { recipes } from '../../data/recipes.js';
 	}
 /* /Factory recipes */
 
-/* List all Ingredients */
-export function listAllIngredients (recipes) {
-	let ingredientsList = [];
-	recipes.forEach(recipe => {
-		recipe.ingredients.forEach(ingredient => {
-			ingredientsList.push(ingredient.ingredient);
-		});
-	});
-	/* Remove duplicates */
-	return [...new Set(ingredientsList)].sort(); //FIXME
-	/* /Remove duplicates */
-}
-
-/* ---- List all Appliance ----- */
-export function listAllAppliance (recipes) {
-	let applianceList = [];
-	recipes.forEach(recipe => {
-		applianceList.push(recipe.appliance);
-	}
-	);
-
-	/* Remove duplicates */
-	return [...new Set(applianceList)].sort(); //FIXME
-	/* /Remove duplicates */
-}
-
-/* List all Utensils */
-export function listAllUtensils (recipes) {
-	let utensilsList = [];
-	recipes.forEach(recipe => {
-		utensilsList.push(recipe.utensils);
-	}
-	);
-
-	/* Remove duplicates */
-	return [...new Set(utensilsList)].sort(); //FIXME
-	/* /Remove duplicates */
-}
-
 	/* For each recipe call listIngredients, listAppliance and listUtensils */
 	export function testFunctions () {
 			let recipeModel = factoryRecipe(recipes);
@@ -88,10 +50,11 @@ export function listAllUtensils (recipes) {
 
 document.getElementById('searchbar').addEventListener('keyup', function (e) {
 	let keyword = e.target.value;
+	let result = [];
 	if (keyword.length < 3) {
 		keyword = '';
+		result = recipes;
 	}
-	let result = [];
 	recipes.forEach(recipe => {
 		if (recipe.name.toLowerCase().includes(keyword.toLowerCase()) ||
 			recipe.description.toLowerCase().includes(keyword.toLowerCase()) ||
@@ -101,7 +64,9 @@ document.getElementById('searchbar').addEventListener('keyup', function (e) {
 		}
 	});
 	document.getElementById('card-container').innerHTML = '';
-	console.log(listAllIngredients(result));
+	addIngredients(result);
+	addAppareils(result);
+	addUstensiles(result);
 	result.forEach(recipe => {
 		let recipeModel = factoryRecipe(recipe);
 		document.getElementById('card-container').innerHTML += recipeModel.returnDOM(recipe);

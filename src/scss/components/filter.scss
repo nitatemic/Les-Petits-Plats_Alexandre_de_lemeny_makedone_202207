@@ -3,6 +3,13 @@
   content: none;
 }
 
+#list-ingredients {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  inset: 4rem auto auto 0 !important;
+  transform : none !important;
+}
 #list-ingredients > li > a {
   color: white;
 }
@@ -10,6 +17,22 @@
 #list-ingredients > li:hover > a {
   color: black;
 }
+
+#list-appareils {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  inset: 4rem auto auto 0 !important;
+  transform : none !important;
+}
+#list-appareils > li > a {
+  color: white;
+}
+
+#list-appareils > li:hover > a {
+  color: black;
+}
+
 /* /Bootstrap override */
 
 /* Tags */
@@ -28,7 +51,6 @@
 /* Appareils tags */
 .appareils-tag {
   color : white;
-
   background-color: #68D9A4;
 }
 /* /Appareils tags */
@@ -74,7 +96,7 @@
 
 /* Appareils */
 
-#button-appareils, #input-appareils, #input-appareils::placeholder {
+#button-appareils, #input-appareils, #input-appareils::placeholder, #filter-appareils > .dropdown-menu, #filter-appareils > .dropdown-menu > .dropdown-item {
   background-color: #68D9A4;
   color: white;
   transition: all 0.3s ease-in-out;
@@ -89,7 +111,7 @@
 
 /* Ustensiles */
 
-#button-ustensiles, #input-ustensiles, #input-ustensiles::placeholder {
+#button-ustensiles, #input-ustensiles, #input-ustensiles::placeholder, #filter-ustensiles > .dropdown-menu, #filter-ustensiles > .dropdown-menu > .dropdown-item {
   background-color: #ED6454;
   color: white;
   transition: all 0.3s ease-in-out;
@@ -98,6 +120,21 @@
 #button-ustensiles:hover {
   background-color: lightpink;
   transition: all 0.3s ease-in-out;
+}
+
+#list-ustensiles {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  inset: 4rem auto auto 0 !important;
+  transform : none !important;
+}
+#list-ustensiles > li > a {
+  color: white;
+}
+
+#list-ustensiles > li:hover > a {
+  color: black;
 }
 /* /Ustensiles */
 /* /Filters */
