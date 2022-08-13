@@ -5,8 +5,9 @@ import { addAppareils, addIngredients, addUstensiles } from './filters.js';
 	export function factoryRecipe () {
 
 		function returnDOM (recipe) {
-			return `
-		<div class="col">
+			let div = document.createElement('div');
+			div.className= 'col';
+			div.innerHTML = `
 		  <div class="card shadow-sm">
 		    <svg class="bd-placeholder-img h-50 card-img-top" width="100%" height="178" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#C7BEBE"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
 		    <div class="card-body d-flex flex-column justify-content-between">
@@ -29,8 +30,8 @@ import { addAppareils, addIngredients, addUstensiles } from './filters.js';
 		      </div>
 		    </div>
 		  </div>
-		</div>
 		`;
+			return div;
 		}
 
 	return { returnDOM };
@@ -41,8 +42,11 @@ import { addAppareils, addIngredients, addUstensiles } from './filters.js';
 	export function testFunctions () {
 			let recipeModel = factoryRecipe(recipes);
 			recipes.forEach(recipe => {
-				document.getElementById('card-container').innerHTML += recipeModel.returnDOM(recipe);
+				document.getElementById('card-container').append(recipeModel.returnDOM(recipe));
 			})
+		addIngredients(recipes);
+		addAppareils(recipes);
+		addUstensiles(recipes);
 	}
 
 	/* /For each recipe call listIngredients, listAppliance and listUtensils */
@@ -54,21 +58,22 @@ document.getElementById('searchbar').addEventListener('keyup', function (e) {
 	if (keyword.length < 3) {
 		keyword = '';
 		result = recipes;
-	}
+	} else {
 	recipes.forEach(recipe => {
-		if (recipe.name.toLowerCase().includes(keyword.toLowerCase()) ||
-			recipe.description.toLowerCase().includes(keyword.toLowerCase()) ||
-			recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(keyword.toLowerCase()))
+		if (recipe.name.toLowerCase().includes(keyword.toLowerCase())
+			|| recipe.description.toLowerCase().includes(keyword.toLowerCase())
+			|| recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(keyword.toLowerCase()))
 		) {
 			result.push(recipe);
 		}
 	});
+	}
 	document.getElementById('card-container').innerHTML = '';
 	addIngredients(result);
 	addAppareils(result);
 	addUstensiles(result);
 	result.forEach(recipe => {
 		let recipeModel = factoryRecipe(recipe);
-		document.getElementById('card-container').innerHTML += recipeModel.returnDOM(recipe);
+		document.getElementById('card-container').appendChild(recipeModel.returnDOM(recipe));
 	});
 });
