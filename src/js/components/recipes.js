@@ -57,14 +57,13 @@ import {
 
 	/* /For each recipe call listIngredients, listAppliance and listUtensils */
 
-
 document.getElementById('searchbar').addEventListener('keyup', function (e) {
 	let keyword = e.target.value;
 	let result = filterByKeyword(keyword);
-	document.getElementById('card-container').innerHTML = '';
 	listIngredients(result);
 	listAppareils(result);
 	listUstensiles(result);
+	document.getElementById('card-container').innerHTML = ''; // Clear the container
 	result.forEach(recipe => {
 		let recipeModel = factoryRecipe(recipe);
 		document.getElementById('card-container').appendChild(recipeModel.returnDOM(recipe));

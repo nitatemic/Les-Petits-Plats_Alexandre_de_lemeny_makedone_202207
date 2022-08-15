@@ -25,14 +25,11 @@ export const filterEvents = () => {
 	const dropdownUstensiles = document.getElementById('list-ustensiles');
 
 
-
 	const filtersDiv = [filterIngredients, filterAppareils, filterUstensiles];
 	const filtersInputs = [inputIngredients, inputAppareils, inputUstensiles];
 	const filtersButtons = [buttonIngredients, buttonAppareils, buttonUstensiles];
 	const filtersIcons = [iconIngredients, iconAppareils, iconUstensiles];
 	const dropdowns =  [dropdownIngredients, dropdownAppareils, dropdownUstensiles];
-	const dropdownFunctions = [addIngredients, addAppareils, addUstensiles];
-
 
 	filtersButtons.forEach((button, index) => {
 		button.addEventListener('click', () => {
@@ -74,10 +71,14 @@ export const filterEvents = () => {
 		});
 	});
 	//TODO : Event listener on dropdown  (https://getbootstrap.com/docs/5.2/components/dropdowns/#events)
-
 };
 
-/* List all Ingredients */
+/**
+ * It takes the list of recipes, extracts the list of ingredients, removes duplicates, sorts the list,
+ * and then adds the list to the state
+ * @param result - the array of recipes returned from the API call
+ * @returns An array of ingredients.
+ */
 export function listIngredients(result) {
 	let ingredientsList = [];
 	result.forEach(recipe => {
@@ -89,6 +90,12 @@ export function listIngredients(result) {
 	}
 
 
+/**
+ * It takes a list of ingredients, clears the list of ingredients in the DOM, and then adds the new
+ * list of ingredients to the DOM
+ * @param listOfIngredients - an array of strings
+ * @returns The list of ingredients.
+ */
 export function addIngredients(listOfIngredients) {
 	document.getElementById('list-ingredients').innerHTML= '';
 	listOfIngredients.forEach((ingredient) => {
@@ -104,6 +111,12 @@ export function addIngredients(listOfIngredients) {
 }
 
 
+/**
+ * It takes the list of recipes, extracts the list of appliances, removes duplicates, sorts the list,
+ * and then adds the list to the state
+ * @param result - the result of the API call
+ * @returns an array of unique appareils.
+ */
 export function listAppareils(result) {
 	let appareilsList = [];
 		result.forEach(recipe => {
@@ -112,6 +125,12 @@ export function listAppareils(result) {
 	return addAppareils([...new Set(appareilsList)].sort());
 }
 
+/**
+ * It takes a list of appareils, creates a DOM element for each appareil, and appends it to the list of
+ * appareils
+ * @param listOfAppareils - an array of strings
+ * @returns The list of appareils
+ */
 export function addAppareils (listOfAppareils) {
 	document.getElementById('list-appareils').innerHTML= '';
 	listOfAppareils.forEach((appareil) => {
@@ -127,6 +146,11 @@ export function addAppareils (listOfAppareils) {
 }
 
 
+/**
+ * It takes an array of recipes, and returns an array of unique utensils
+ * @param result - the result of the API call
+ * @returns An array of unique utensils sorted alphabetically.
+ */
 export function listUstensiles(result) {
 	let ustensilesList = []
 	result.forEach(recipe => {
@@ -137,6 +161,11 @@ export function listUstensiles(result) {
 	return addUstensiles([...new Set(ustensilesList)].sort());
 }
 
+/**
+ * It takes a list of ustensiles, and adds them to the DOM
+ * @param listOfUstensiles - an array of strings
+ * @returns The list of ustensiles
+ */
 export function addUstensiles (listOfUstensiles) {
 	document.getElementById('list-ustensiles').innerHTML= '';
 	listOfUstensiles.forEach((ustensile) => {
@@ -152,7 +181,11 @@ export function addUstensiles (listOfUstensiles) {
 }
 
 
-
+/**
+ * It filters the recipes array by the keyword, and returns the filtered array
+ * @param keyword - the keyword to filter by
+ * @returns An array of recipes that match the keyword.
+ */
 export function filterByKeyword (keyword) {
 	let result = [];
 	if (keyword.length < 3) {
