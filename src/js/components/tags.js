@@ -36,5 +36,18 @@ export function removeTag(tag) {
 	tag.remove();
 	/* Get the id, replace - by : */
 	const tagID = tag.id.replace(/\-/g, ":");
-	removeAChoice(tagID);
+	switch (removeAChoice(tagID)) {
+
+		case "Le type de choix n'est pas valide." :
+			console.error("Impossible de supprimer le choix. Le type de choix n'est pas valide.");
+			break;
+
+			case "Ce choix n'est pas dans la liste." :
+				console.error("Impossible de supprimer le choix. Ce choix n'est pas dans la liste.");
+				break;
+
+			case "Le choix a bien été retiré." :
+				console.log("Le choix a bien été retiré.");
+
+	}
 }
