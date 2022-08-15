@@ -1,5 +1,11 @@
 import { recipes } from '../../data/recipes.js';
-import { addAppareils, addIngredients, addUstensiles } from './filters.js';
+import {
+	addAppareils,
+	addIngredients,
+	addUstensiles,
+	filterByKeyword, listAppareils,
+	listIngredients, listUstensiles
+} from './filters.js';
 
 /* Factory recipes */
 	export function factoryRecipe () {
@@ -39,14 +45,14 @@ import { addAppareils, addIngredients, addUstensiles } from './filters.js';
 /* /Factory recipes */
 
 	/* For each recipe call listIngredients, listAppliance and listUtensils */
-	export function testFunctions () {
+	export function initFunctions () {
 			let recipeModel = factoryRecipe(recipes);
 			recipes.forEach(recipe => {
 				document.getElementById('card-container').append(recipeModel.returnDOM(recipe));
 			})
-		addIngredients(recipes);
-		addAppareils(recipes);
-		addUstensiles(recipes);
+		listIngredients(recipes);
+		listAppareils(recipes);
+		listUstensiles(recipes);
 	}
 
 	/* /For each recipe call listIngredients, listAppliance and listUtensils */
@@ -54,24 +60,11 @@ import { addAppareils, addIngredients, addUstensiles } from './filters.js';
 
 document.getElementById('searchbar').addEventListener('keyup', function (e) {
 	let keyword = e.target.value;
-	let result = [];
-	if (keyword.length < 3) {
-		keyword = '';
-		result = recipes;
-	} else {
-	recipes.forEach(recipe => {
-		if (recipe.name.toLowerCase().includes(keyword.toLowerCase())
-			|| recipe.description.toLowerCase().includes(keyword.toLowerCase())
-			|| recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(keyword.toLowerCase()))
-		) {
-			result.push(recipe);
-		}
-	});
-	}
+	let result = filterByKeyword(keyword);
 	document.getElementById('card-container').innerHTML = '';
-	addIngredients(result);
-	addAppareils(result);
-	addUstensiles(result);
+	listIngredients(result);
+	listAppareils(result);
+	listUstensiles(result);
 	result.forEach(recipe => {
 		let recipeModel = factoryRecipe(recipe);
 		document.getElementById('card-container').appendChild(recipeModel.returnDOM(recipe));

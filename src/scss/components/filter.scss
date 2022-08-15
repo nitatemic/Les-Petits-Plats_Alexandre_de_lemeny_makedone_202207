@@ -9,6 +9,7 @@
   margin: 0;
   inset: 4rem auto auto 0 !important;
   transform : none !important;
+  background-color: #3282F7;
 }
 #list-ingredients > li > a {
   color: white;
@@ -24,6 +25,7 @@
   margin: 0;
   inset: 4rem auto auto 0 !important;
   transform : none !important;
+  background-color: #68D9A4
 }
 #list-appareils > li > a {
   color: white;
@@ -72,11 +74,11 @@
 
 /* Animations */
 .filterFocus {
-  width: 100%;
+  max-width: 100% ;
   transition : width 0.3s ease-in-out;
 }
 
-#filter-container > * {
+#filter-container > *:not(.filterFocus) {
   transition : width 0.3s ease-in-out;
 }/* /Animations */
 
@@ -128,13 +130,40 @@
   margin: 0;
   inset: 4rem auto auto 0 !important;
   transform : none !important;
+  color : white;
+  background-color: #ED6454;
 }
+
+#list-ustensiles > li {
+  width: fit-content;
+}
+
 #list-ustensiles > li > a {
   color: white;
+  width: 25%;
 }
 
 #list-ustensiles > li:hover > a {
   color: black;
 }
 /* /Ustensiles */
+
+/* Dropdown */
+.dropdown-menu {
+  transition: all 0.3s ease-in-out;
+  display: none;
+  flex-wrap : wrap;
+  flex: 0 0 50%;
+  max-height: 15rem;
+  overflow-y: auto;
+}
+
+.dropdown-container {
+  width: 100%;
+}
+
+.dropdownFocus {
+  display: flex;
+}
+
 /* /Filters */

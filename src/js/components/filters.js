@@ -1,4 +1,6 @@
 /* Events listeners on filter */
+import { recipes } from '../../data/recipes';
+
 export const filterEvents = () => {
 
 	/* Getting the elements from the DOM. */
@@ -18,10 +20,19 @@ export const filterEvents = () => {
 	const iconAppareils = document.getElementById('icon-appareils');
 	const iconUstensiles = document.getElementById('icon-ustensiles');
 
+	const dropdownIngredients = document.getElementById('list-ingredients');
+	const dropdownAppareils = document.getElementById('list-appareils');
+	const dropdownUstensiles = document.getElementById('list-ustensiles');
+
+
+
 	const filtersDiv = [filterIngredients, filterAppareils, filterUstensiles];
 	const filtersInputs = [inputIngredients, inputAppareils, inputUstensiles];
 	const filtersButtons = [buttonIngredients, buttonAppareils, buttonUstensiles];
 	const filtersIcons = [iconIngredients, iconAppareils, iconUstensiles];
+	const dropdowns =  [dropdownIngredients, dropdownAppareils, dropdownUstensiles];
+	const dropdownFunctions = [addIngredients, addAppareils, addUstensiles];
+
 
 	filtersButtons.forEach((button, index) => {
 		button.addEventListener('click', () => {
@@ -29,10 +40,12 @@ export const filterEvents = () => {
 				filtersIcons[index].classList.remove('fa-chevron-down');
 				filtersIcons[index].classList.add('fa-chevron-up');
 				filtersDiv[index].classList.add('filterFocus');
+				dropdowns[index].classList.add('dropdownFocus');
 			} else {
 				filtersIcons[index].classList.remove('fa-chevron-up');
 				filtersIcons[index].classList.add('fa-chevron-down');
 				filtersDiv[index].classList.remove('filterFocus');
+				dropdowns[index].classList.remove('dropdownFocus');
 			}
 		});
 	});
@@ -42,33 +55,43 @@ export const filterEvents = () => {
 			filtersDiv[index].classList.add('filterFocus');
 				filtersIcons[index].classList.remove('fa-chevron-down');
 				filtersIcons[index].classList.add('fa-chevron-up');
+				filtersDiv[index].classList.add('filterFocus');
+				dropdowns[index].classList.add('dropdownFocus');
 		}
 		, false);
 		input.addEventListener('blur', () => {
-			filtersDiv[index].classList.remove('filterFocus');
 				filtersIcons[index].classList.remove('fa-chevron-up');
 				filtersIcons[index].classList.add('fa-chevron-down');
+				filtersDiv[index].classList.remove('filterFocus');
+				dropdowns[index].classList.remove('dropdownFocus');
 		}
 		, false);
+		input.addEventListener('keyup', function(e) {
+			let keyword = e.target.value;
+			let ingredientsAvailable = [];
+			/* If the user has typed something, filter the dropdown list */
+			console.log(ingredientsAvailable);
+		});
 	});
-
 	//TODO : Event listener on dropdown  (https://getbootstrap.com/docs/5.2/components/dropdowns/#events)
 
 };
 
 /* List all Ingredients */
-export function addIngredients (recipes) {
+export function listIngredients(result) {
 	let ingredientsList = [];
-	recipes.forEach(recipe => {
+	result.forEach(recipe => {
 		recipe.ingredients.forEach((ingredient) => {
 			ingredientsList.push(ingredient.ingredient);
 		});
 	});
+	return addIngredients([...new Set(ingredientsList)].sort());
+	}
 
-	/* Remove duplicates */
-	let filtered = [...new Set(ingredientsList)].sort();//FIXME
+
+export function addIngredients(listOfIngredients) {
 	document.getElementById('list-ingredients').innerHTML= '';
-	filtered.forEach((ingredient) => {
+	listOfIngredients.forEach((ingredient) => {
 		let liDOM = document.createElement('li');
 		let a = document.createElement('a');
 		a.href = '#';
@@ -77,20 +100,21 @@ export function addIngredients (recipes) {
 		liDOM.appendChild(a);
 		document.getElementById('list-ingredients').appendChild(liDOM);
 	})
-	return filtered;
+	return listOfIngredients;
 }
 
-/* List all Ingredients */
-export function addAppareils (recipes) {
-	let appareilsList = [];
-	recipes.forEach(recipe => {
-		appareilsList.push(recipe.appliance);
-	});
 
-	/* Remove duplicates */
-	let filtered = [...new Set(appareilsList)].sort();//FIXME
+export function listAppareils(result) {
+	let appareilsList = [];
+		result.forEach(recipe => {
+			appareilsList.push(recipe.appliance);
+	});
+	return addAppareils([...new Set(appareilsList)].sort());
+}
+
+export function addAppareils (listOfAppareils) {
 	document.getElementById('list-appareils').innerHTML= '';
-	filtered.forEach((appareil) => {
+	listOfAppareils.forEach((appareil) => {
 		let liDOM = document.createElement('li');
 		let a = document.createElement('a');
 		a.href = '#';
@@ -99,22 +123,23 @@ export function addAppareils (recipes) {
 		liDOM.appendChild(a);
 		document.getElementById('list-appareils').appendChild(liDOM);
 	})
-	return filtered;
+	return listOfAppareils;
 }
 
-/* List all Ingredients */
-export function addUstensiles (recipes) {
-	let ustensilesList = [];
-	recipes.forEach(recipe => {
+
+export function listUstensiles(result) {
+	let ustensilesList = []
+	result.forEach(recipe => {
 		recipe.utensils.forEach((utensil) => {
 			ustensilesList.push(utensil);
 		});
 	});
+	return addUstensiles([...new Set(ustensilesList)].sort());
+}
 
-	/* Remove duplicates */
-	let filtered = [...new Set(ustensilesList)].sort();//FIXME
+export function addUstensiles (listOfUstensiles) {
 	document.getElementById('list-ustensiles').innerHTML= '';
-	filtered.forEach((ustensile) => {
+	listOfUstensiles.forEach((ustensile) => {
 		let liDOM = document.createElement('li');
 		let a = document.createElement('a');
 		a.href = '#';
@@ -123,5 +148,27 @@ export function addUstensiles (recipes) {
 		liDOM.appendChild(a);
 		document.getElementById('list-ustensiles').appendChild(liDOM);
 	})
-	return filtered;
+	return listOfUstensiles;
 }
+
+
+
+export function filterByKeyword (keyword) {
+	let result = [];
+	if (keyword.length < 3) {
+		keyword = '';
+		result = recipes;
+	} else {
+		recipes.forEach(recipe => {
+			if (recipe.name.toLowerCase().includes(keyword.toLowerCase())
+				|| recipe.description.toLowerCase().includes(keyword.toLowerCase())
+				|| recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(
+					keyword.toLowerCase()))
+			) {
+				result.push(recipe);
+			}
+		});
+	}
+	return result;
+}
+
