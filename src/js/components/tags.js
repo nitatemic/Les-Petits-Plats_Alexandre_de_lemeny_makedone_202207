@@ -46,6 +46,9 @@ export function createTag(type, value, restoreSession) {
 		, false);
 	tag.appendChild(tagSpan);
 	tagsContainer.appendChild(tag);
+
+	/* Remove the button from the ul */
+	document.getElementById(`li-${value}`).remove();
 }
 
 
@@ -81,3 +84,4 @@ export function restoreSession() {
 export function clearSession() {
 	sessionStorage.clear();
 }
+

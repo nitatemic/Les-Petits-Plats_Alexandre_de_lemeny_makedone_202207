@@ -101,6 +101,7 @@ export function addIngredients(listOfIngredients) {
 	document.getElementById('list-ingredients').innerHTML= '';
 	listOfIngredients.forEach((ingredient) => {
 		let liDOM = document.createElement('li');
+		liDOM.id = `li-${ingredient}`;
 		let a = document.createElement('a');
 		a.addEventListener('click', () => {
 			createTag('ingredient', ingredient);
@@ -139,6 +140,7 @@ export function addAppareils (listOfAppareils) {
 	listOfAppareils.forEach((appareil) => {
 		let liDOM = document.createElement('li');
 		let a = document.createElement('a');
+		liDOM.id = `li-${appareil}`;
 		a.addEventListener('click', () => {
 			createTag('appareil', appareil);
 		});
@@ -175,6 +177,7 @@ export function addUstensiles (listOfUstensiles) {
 	document.getElementById('list-ustensiles').innerHTML= '';
 	listOfUstensiles.forEach((ustensile) => {
 		let liDOM = document.createElement('li');
+		liDOM.id = `li-${ustensile}`;
 		let a = document.createElement('a');
 		a.addEventListener('click', () => {
 			createTag('ustensile', ustensile);
@@ -211,5 +214,3 @@ export function filterByKeyword (keyword) {
 	}
 	return result;
 }
-
-
