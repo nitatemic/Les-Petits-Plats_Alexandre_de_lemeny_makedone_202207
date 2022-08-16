@@ -1,6 +1,22 @@
 import { addAChoice, removeAChoice } from "../tools/data.js";
-export function createTag(type, value) {
-	addAChoice(`${type}:${value}`);
+
+export function createTag(type, value, restoreSession) {
+	if (!restoreSession) {
+		switch (addAChoice(type, value)) {
+
+			case "Ce choix est déjà dans la liste." :
+				console.error("Ce choix est déjà dans la liste.");
+				return "Ce choix est déjà dans la liste.";
+
+			case "Le choix a bien été ajouté." :
+				console.log("Le choix a bien été ajouté.");
+				break;
+
+			default :
+				console.error("Erreur inconnue.");
+		}
+	}
+
 	const tagsContainer = document.getElementById("tags-container")
 	const tag = document.createElement("span");
 	tag.className = "tag";
@@ -22,11 +38,12 @@ export function createTag(type, value) {
 
 	const tagSpan = document.createElement("span");
 	tagSpan.className = "close-tag";
-	tagSpan.addEventListener("click", function(e) {
-			removeTag(e.target.parentElement);
+	tagSpan.innerHTML = `${value} <i class='fa-regular fa-circle-xmark'></i>`;
+	let icon = tagSpan.querySelector("i");
+	icon.addEventListener("click", function(e) {
+			removeTag(tag);
 		}
 		, false);
-	tagSpan.innerHTML = `${value}<i class='fa-regular fa-circle-xmark'></i>`;
 	tag.appendChild(tagSpan);
 	tagsContainer.appendChild(tag);
 }
@@ -35,7 +52,8 @@ export function createTag(type, value) {
 export function removeTag(tag) {
 	tag.remove();
 	/* Get the id, replace - by : */
-	const tagID = tag.id.replace(/\-/g, ":");
+	const tagID = tag.id.replace("-", ":");
+	console.log(tagID);
 	switch (removeAChoice(tagID)) {
 
 		case "Le type de choix n'est pas valide." :
@@ -56,7 +74,7 @@ export function restoreSession() {
 	const userChoices = JSON.parse(sessionStorage.getItem("userChoices"));
 	document.getElementById("tags-container").innerHTML = "";
 	userChoices.forEach(function(choice) {
-		createTag(choice.split(":")[0], choice.split(":")[1]);
+		createTag(choice.split(":")[0], choice.split(":")[1], true);
 	});
 }
 

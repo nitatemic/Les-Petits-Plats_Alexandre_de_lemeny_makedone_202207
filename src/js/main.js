@@ -5,7 +5,6 @@ import * as bootstrap from 'bootstrap'
 import '../scss/main.scss'
 import { filterEvents } from './components/filters';
 import { initFunctions } from './components/recipes';
-
 filterEvents();
 initFunctions();
 

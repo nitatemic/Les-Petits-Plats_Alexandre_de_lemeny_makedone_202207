@@ -1,5 +1,6 @@
 /* Events listeners on filter */
 import { recipes } from '../../data/recipes';
+import { clearSession,createTag, removeTag, restoreSession } from "./tags.js";
 
 export const filterEvents = () => {
 
@@ -101,7 +102,9 @@ export function addIngredients(listOfIngredients) {
 	listOfIngredients.forEach((ingredient) => {
 		let liDOM = document.createElement('li');
 		let a = document.createElement('a');
-		a.href = '#';
+		a.addEventListener('click', () => {
+			createTag('ingredient', ingredient);
+		});
 		a.innerHTML = ingredient;
 		a.className = 'dropdown-item';
 		liDOM.appendChild(a);
@@ -136,7 +139,9 @@ export function addAppareils (listOfAppareils) {
 	listOfAppareils.forEach((appareil) => {
 		let liDOM = document.createElement('li');
 		let a = document.createElement('a');
-		a.href = '#';
+		a.addEventListener('click', () => {
+			createTag('appareil', appareil);
+		});
 		a.innerHTML = appareil;
 		a.className = 'dropdown-item';
 		liDOM.appendChild(a);
@@ -171,7 +176,9 @@ export function addUstensiles (listOfUstensiles) {
 	listOfUstensiles.forEach((ustensile) => {
 		let liDOM = document.createElement('li');
 		let a = document.createElement('a');
-		a.href = '#';
+		a.addEventListener('click', () => {
+			createTag('ustensile', ustensile);
+		});
 		a.innerHTML = ustensile;
 		a.className = 'dropdown-item';
 		liDOM.appendChild(a);
@@ -204,4 +211,5 @@ export function filterByKeyword (keyword) {
 	}
 	return result;
 }
+
 

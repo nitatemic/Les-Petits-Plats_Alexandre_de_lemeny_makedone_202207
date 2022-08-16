@@ -1,3 +1,5 @@
+import { restoreSession } from '../components/tags';
+
 export function configSession() {
 	/* Create an empty array in the session storage, it will be used by filters to store user's choices */
 	if(sessionStorage.getItem("userChoices") === undefined) {
@@ -11,27 +13,28 @@ export function configSession() {
 
 /**
  * It adds a choice to the list of choices
- * @param choice - the choice to add to the array
  * @returns A string.
+ * @param type
+ * @param value
  */
-export function addAChoice(choice) {
-	/* Extract the type of the choice. It's the word before : */
-	let type = choice.split(":")[0];
-	if (type !== "ingredient" || type !== "appareil" || type !== "ustensile" || type !== "keyword") {
-		return "Le type de choix n'est pas valide."
-	} else {
+export function addAChoice(type, value) {
+	if (!Array.isArray(JSON.parse(sessionStorage.getItem("userChoices"))) ) {
+		console.log("Le tableau n'est pas créé. Il sera créé.");
+		sessionStorage.setItem("userChoices", JSON.stringify([]))
+	}
+
+	console.log(type + " " + value);
 	/* Get the array of choices from the session storage */
 		let userChoices = JSON.parse(sessionStorage.getItem("userChoices"));
 		/* Check if the choice is already in the array */
-		if (userChoices.includes(choice)) {
+		if (userChoices.includes(`${type}:${value}`)) {
 			return "Ce choix est déjà dans la liste."
 		}
 		/* Add the choice to the array */
-		userChoices.push(choice);
+		userChoices.push(`${type}:${value}`);
 		/* Update the session storage */
 		sessionStorage.setItem("userChoices", JSON.stringify(userChoices));
 		return "Le choix a bien été ajouté."
-	}
 }
 
 /**
@@ -42,7 +45,7 @@ export function addAChoice(choice) {
 export function removeAChoice(choice) {
 	/* Extract the type of the choice. It's the word before : */
 	let type = choice.split(":")[0];
-	if (type !== "ingredient" || type !== "appareil" || type !== "ustensile" || type !== "keyword") {
+	if (type !== "ingredient") {
 		return "Le type de choix n'est pas valide."
 	} else {
 	/* Get the array of choices from the session storage */

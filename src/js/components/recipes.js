@@ -6,6 +6,7 @@ import {
 	filterByKeyword, listAppareils,
 	listIngredients, listUstensiles
 } from './filters.js';
+import { restoreSession } from './tags.js';
 
 /* Factory recipes */
 	export function factoryRecipe () {
@@ -53,6 +54,7 @@ import {
 		listIngredients(recipes);
 		listAppareils(recipes);
 		listUstensiles(recipes);
+		restoreSession();
 	}
 
 	/* /For each recipe call listIngredients, listAppliance and listUtensils */
