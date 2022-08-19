@@ -1,15 +1,9 @@
 import { recipes } from '../../data/recipes.js';
 import {
-	addAppareils,
-	addIngredients,
-	addUstensiles,
-	filterByKeyword, listAppareils,
-	listIngredients, listUstensiles
+	filterByKeyword
 } from './filters.js';
-import { restoreSession } from './tags.js';
+import { restoreSession, searchByTag } from './tags.js';
 
-/* Factory recipes */
-	export function factoryRecipe () {
 
 		function returnDOM (recipe) {
 			let div = document.createElement('div');
@@ -41,33 +35,25 @@ import { restoreSession } from './tags.js';
 			return div;
 		}
 
-	return { returnDOM };
-	}
-/* /Factory recipes */
-
-	/* For each recipe call listIngredients, listAppliance and listUtensils */
-	export function initFunctions () {
-			let recipeModel = factoryRecipe(recipes);
-			recipes.forEach(recipe => {
-				document.getElementById('card-container').append(recipeModel.returnDOM(recipe));
-			})
-		listIngredients(recipes);
-		listAppareils(recipes);
-		listUstensiles(recipes);
-		restoreSession();
+	export async function initFunction() {
+		console.log("INIT")
+		if (sessionStorage.getItem('userChoices') === null) {
+			console.log("No session");
+			sessionStorage.setItem('userChoices', JSON.stringify([]));
+		}
+		const list = await searchByTag(recipes)
+		document.getElementById('card-container').innerHTML = ''; // Clear the container
+		 list.forEach(recipe => {
+			document.getElementById('card-container').append(returnDOM(recipe));
+		})
 	}
 
-	/* /For each recipe call listIngredients, listAppliance and listUtensils */
-
-document.getElementById('searchbar').addEventListener('keyup', function (e) {
+document.getElementById('searchbar').addEventListener('keyup', async function (e) {
 	let keyword = e.target.value;
-	let result = filterByKeyword(keyword);
-	listIngredients(result);
-	listAppareils(result);
-	listUstensiles(result);
+	const result = await searchByTag(recipes)
 	document.getElementById('card-container').innerHTML = ''; // Clear the container
-	result.forEach(recipe => {
-		let recipeModel = factoryRecipe(recipe);
-		document.getElementById('card-container').appendChild(recipeModel.returnDOM(recipe));
+	const list = filterByKeyword(keyword, result);
+	list.forEach(recipe => {
+		document.getElementById('card-container').appendChild(returnDOM(recipe));
 	});
 });

@@ -1,6 +1,7 @@
 /* Events listeners on filter */
 import { recipes } from '../../data/recipes';
-import { clearSession,createTag, removeTag, restoreSession } from "./tags.js";
+import { clearSession, createTag, removeTag, restoreSession, searchByTag } from "./tags.js";
+import { initFunction } from './recipes.js';
 
 export const filterEvents = () => {
 
@@ -105,6 +106,8 @@ export function addIngredients(listOfIngredients) {
 		let a = document.createElement('a');
 		a.addEventListener('click', () => {
 			createTag('ingredient', ingredient);
+			searchByTag(recipes);
+			initFunction();
 		});
 		a.innerHTML = ingredient;
 		a.className = 'dropdown-item';
@@ -143,6 +146,8 @@ export function addAppareils (listOfAppareils) {
 		liDOM.id = `li-${appareil}`;
 		a.addEventListener('click', () => {
 			createTag('appareil', appareil);
+			searchByTag(recipes);
+			initFunction()
 		});
 		a.innerHTML = appareil;
 		a.className = 'dropdown-item';
@@ -181,6 +186,8 @@ export function addUstensiles (listOfUstensiles) {
 		let a = document.createElement('a');
 		a.addEventListener('click', () => {
 			createTag('ustensile', ustensile);
+			searchByTag(recipes);
+			initFunction()
 		});
 		a.innerHTML = ustensile;
 		a.className = 'dropdown-item';
@@ -194,15 +201,16 @@ export function addUstensiles (listOfUstensiles) {
 /**
  * It filters the recipes array by the keyword, and returns the filtered array
  * @param keyword - the keyword to filter by
+ * @param list
  * @returns An array of recipes that match the keyword.
  */
-export function filterByKeyword (keyword) {
+export function filterByKeyword (keyword, list) {
 	let result = [];
 	if (keyword.length < 3) {
 		keyword = '';
-		result = recipes;
+		result = list;
 	} else {
-		recipes.forEach(recipe => {
+		list.forEach(recipe => {
 			if (recipe.name.toLowerCase().includes(keyword.toLowerCase())
 				|| recipe.description.toLowerCase().includes(keyword.toLowerCase())
 				|| recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(

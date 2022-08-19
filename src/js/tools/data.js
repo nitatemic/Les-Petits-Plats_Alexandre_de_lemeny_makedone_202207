@@ -43,11 +43,6 @@ export function addAChoice(type, value) {
  * @returns A string.
  */
 export function removeAChoice(choice) {
-	/* Extract the type of the choice. It's the word before : */
-	let type = choice.split(":")[0];
-	if (type !== "ingredient") {
-		return "Le type de choix n'est pas valide."
-	} else {
 	/* Get the array of choices from the session storage */
 		let userChoices = JSON.parse(sessionStorage.getItem("userChoices"));
 		/* Check if the choice is already in the array */
@@ -59,5 +54,4 @@ export function removeAChoice(choice) {
 		/* Update the session storage */
 		sessionStorage.setItem("userChoices", JSON.stringify(userChoices));
 		return "Le choix a bien été retiré."
-	}
 }

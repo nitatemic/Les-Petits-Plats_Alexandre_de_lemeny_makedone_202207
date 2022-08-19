@@ -4,7 +4,7 @@ import * as bootstrap from 'bootstrap'
 // Import our custom CSS
 import '../scss/main.scss'
 import { filterEvents } from './components/filters';
-import { initFunctions } from './components/recipes';
+import { initFunction } from './components/recipes';
 filterEvents();
-initFunctions();
+initFunction();
 
