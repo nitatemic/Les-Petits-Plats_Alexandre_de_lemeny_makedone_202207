@@ -2,7 +2,7 @@ import { restoreSession } from '../components/tags';
 
 export function configSession() {
 	/* Create an empty array in the session storage, it will be used by filters to store user's choices */
-	if(sessionStorage.getItem("userChoices") === undefined) {
+	if (sessionStorage.getItem("userChoices") === undefined) {
 		sessionStorage.setItem("userChoices", JSON.stringify([]))
 	} else if (JSON.parse(sessionStorage.getItem("userChoices")).isArray === true) {
 		restoreSession(); //TODO
@@ -18,23 +18,23 @@ export function configSession() {
  * @param value
  */
 export function addAChoice(type, value) {
-	if (!Array.isArray(JSON.parse(sessionStorage.getItem("userChoices"))) ) {
+	if (!Array.isArray(JSON.parse(sessionStorage.getItem("userChoices")))) {
 		console.log("Le tableau n'est pas créé. Il sera créé.");
 		sessionStorage.setItem("userChoices", JSON.stringify([]))
 	}
 
 	console.log(type + " " + value);
 	/* Get the array of choices from the session storage */
-		let userChoices = JSON.parse(sessionStorage.getItem("userChoices"));
-		/* Check if the choice is already in the array */
-		if (userChoices.includes(`${type}:${value}`)) {
-			return "Ce choix est déjà dans la liste."
-		}
-		/* Add the choice to the array */
-		userChoices.push(`${type}:${value}`);
-		/* Update the session storage */
-		sessionStorage.setItem("userChoices", JSON.stringify(userChoices));
-		return "Le choix a bien été ajouté."
+	let userChoices = JSON.parse(sessionStorage.getItem("userChoices"));
+	/* Check if the choice is already in the array */
+	if (userChoices.includes(`${type}:${value}`)) {
+		return "Ce choix est déjà dans la liste."
+	}
+	/* Add the choice to the array */
+	userChoices.push(`${type}:${value}`);
+	/* Update the session storage */
+	sessionStorage.setItem("userChoices", JSON.stringify(userChoices));
+	return "Le choix a bien été ajouté."
 }
 
 /**
@@ -44,14 +44,14 @@ export function addAChoice(type, value) {
  */
 export function removeAChoice(choice) {
 	/* Get the array of choices from the session storage */
-		let userChoices = JSON.parse(sessionStorage.getItem("userChoices"));
-		/* Check if the choice is already in the array */
-		if (!userChoices.includes(choice)) {
-			return "Ce choix n'est pas dans la liste."
-		}
-		/* Remove the choice from the array */
-		userChoices.splice(userChoices.indexOf(choice), 1);
-		/* Update the session storage */
-		sessionStorage.setItem("userChoices", JSON.stringify(userChoices));
-		return "Le choix a bien été retiré."
+	let userChoices = JSON.parse(sessionStorage.getItem("userChoices"));
+	/* Check if the choice is already in the array */
+	if (!userChoices.includes(choice)) {
+		return "Ce choix n'est pas dans la liste."
+	}
+	/* Remove the choice from the array */
+	userChoices.splice(userChoices.indexOf(choice), 1);
+	/* Update the session storage */
+	sessionStorage.setItem("userChoices", JSON.stringify(userChoices));
+	return "Le choix a bien été retiré."
 }

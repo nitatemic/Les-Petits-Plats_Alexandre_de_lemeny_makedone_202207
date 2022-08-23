@@ -1,6 +1,6 @@
 /* Events listeners on filter */
 import { recipes } from '../../data/recipes';
-import { clearSession, createTag, removeTag, restoreSession, searchByTag } from "./tags.js";
+import { createTag, searchByTag } from "./tags.js";
 import { initFunction } from './recipes.js';
 
 export const filterEvents = () => {
@@ -31,7 +31,7 @@ export const filterEvents = () => {
 	const filtersInputs = [inputIngredients, inputAppareils, inputUstensiles];
 	const filtersButtons = [buttonIngredients, buttonAppareils, buttonUstensiles];
 	const filtersIcons = [iconIngredients, iconAppareils, iconUstensiles];
-	const dropdowns =  [dropdownIngredients, dropdownAppareils, dropdownUstensiles];
+	const dropdowns = [dropdownIngredients, dropdownAppareils, dropdownUstensiles];
 
 	filtersButtons.forEach((button, index) => {
 		button.addEventListener('click', () => {
@@ -51,25 +51,26 @@ export const filterEvents = () => {
 
 	filtersInputs.forEach((input, index) => {
 		input.addEventListener('focus', () => {
-			filtersDiv[index].classList.add('filterFocus');
+				filtersDiv[index].classList.add('filterFocus');
 				filtersIcons[index].classList.remove('fa-chevron-down');
 				filtersIcons[index].classList.add('fa-chevron-up');
 				filtersDiv[index].classList.add('filterFocus');
 				dropdowns[index].classList.add('dropdownFocus');
-		}
-		, false);
+			}
+			, false);
 		input.addEventListener('blur', () => {
 				filtersIcons[index].classList.remove('fa-chevron-up');
 				filtersIcons[index].classList.add('fa-chevron-down');
 				filtersDiv[index].classList.remove('filterFocus');
 				dropdowns[index].classList.remove('dropdownFocus');
-		}
-		, false);
-		input.addEventListener('keyup', function(e) {
+			}
+			, false);
+		input.addEventListener('keyup', function (e) {
 			let keyword = e.target.value;
 			let ingredientsAvailable = [];
 			/* If the user has typed something, filter the dropdown list */
 			console.log(ingredientsAvailable);
+			//TODO : Need a function
 		});
 	});
 	//TODO : Event listener on dropdown  (https://getbootstrap.com/docs/5.2/components/dropdowns/#events)
@@ -89,7 +90,7 @@ export function listIngredients(result) {
 		});
 	});
 	return addIngredients([...new Set(ingredientsList)].sort());
-	}
+}
 
 
 /**
@@ -99,7 +100,7 @@ export function listIngredients(result) {
  * @returns The list of ingredients.
  */
 export function addIngredients(listOfIngredients) {
-	document.getElementById('list-ingredients').innerHTML= '';
+	document.getElementById('list-ingredients').innerHTML = '';
 	listOfIngredients.forEach((ingredient) => {
 		let liDOM = document.createElement('li');
 		liDOM.id = `li-${ingredient}`;
@@ -126,8 +127,8 @@ export function addIngredients(listOfIngredients) {
  */
 export function listAppareils(result) {
 	let appareilsList = [];
-		result.forEach(recipe => {
-			appareilsList.push(recipe.appliance);
+	result.forEach(recipe => {
+		appareilsList.push(recipe.appliance);
 	});
 	return addAppareils([...new Set(appareilsList)].sort());
 }
@@ -138,8 +139,8 @@ export function listAppareils(result) {
  * @param listOfAppareils - an array of strings
  * @returns The list of appareils
  */
-export function addAppareils (listOfAppareils) {
-	document.getElementById('list-appareils').innerHTML= '';
+export function addAppareils(listOfAppareils) {
+	document.getElementById('list-appareils').innerHTML = '';
 	listOfAppareils.forEach((appareil) => {
 		let liDOM = document.createElement('li');
 		let a = document.createElement('a');
@@ -178,8 +179,8 @@ export function listUstensiles(result) {
  * @param listOfUstensiles - an array of strings
  * @returns The list of ustensiles
  */
-export function addUstensiles (listOfUstensiles) {
-	document.getElementById('list-ustensiles').innerHTML= '';
+export function addUstensiles(listOfUstensiles) {
+	document.getElementById('list-ustensiles').innerHTML = '';
 	listOfUstensiles.forEach((ustensile) => {
 		let liDOM = document.createElement('li');
 		liDOM.id = `li-${ustensile}`;
@@ -204,7 +205,7 @@ export function addUstensiles (listOfUstensiles) {
  * @param list
  * @returns An array of recipes that match the keyword.
  */
-export function filterByKeyword (keyword, list) {
+export function filterByKeyword(keyword, list) {
 	let result = [];
 	if (keyword.length < 3) {
 		keyword = '';

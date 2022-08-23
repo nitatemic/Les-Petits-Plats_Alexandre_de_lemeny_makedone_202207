@@ -1,5 +1,4 @@
 import { addAChoice, removeAChoice } from "../tools/data.js";
-import { recipes } from "../../data/recipes";
 import { listAppareils, listIngredients, listUstensiles } from './filters';
 import { initFunction } from './recipes';
 
@@ -34,16 +33,16 @@ export function createTag(type, value, restoreSession) {
 			tag.classList.add("tag-appareil");
 			break;
 
-	case "ustensile":
-		tag.classList.add("tag-ustensile");
-		break;
+		case "ustensile":
+			tag.classList.add("tag-ustensile");
+			break;
 	}
 
 	const tagSpan = document.createElement("span");
 	tagSpan.className = "close-tag";
 	tagSpan.innerHTML = `${value} <i class='fa-regular fa-circle-xmark'></i>`;
 	let icon = tagSpan.querySelector("i");
-	icon.addEventListener("click", function(e) {
+	icon.addEventListener("click", function () {
 			removeTag(tag);
 			initFunction()
 		}
@@ -74,11 +73,11 @@ export function removeTag(tag) {
 export function restoreSession() {
 	const userChoices = JSON.parse(sessionStorage.getItem("userChoices"));
 	document.getElementById("tags-container").innerHTML = "";
-	userChoices.forEach(function(choice) {
+	userChoices.forEach(function (choice) {
 		const type = choice.split(":")[0];
 		const value = choice.split(":")[1];
 		if (document.getElementById(`${type}-${value}`) === null) {
-		createTag(choice.split(":")[0], choice.split(":")[1], true);
+			createTag(choice.split(":")[0], choice.split(":")[1], true);
 		}
 	});
 }
@@ -116,13 +115,13 @@ export async function searchByTag(results) {
 					})
 					break;
 
-					case "appareil":
-						isFound = (result.appliance === choice.split(":")[1]);
-						break;
+				case "appareil":
+					isFound = (result.appliance === choice.split(":")[1]);
+					break;
 
-					case "ustensile":
-						isFound = (result.utensils.includes(choice.split(":")[1]));
-						break;
+				case "ustensile":
+					isFound = (result.utensils.includes(choice.split(":")[1]));
+					break;
 			}
 			return isFound;
 		})

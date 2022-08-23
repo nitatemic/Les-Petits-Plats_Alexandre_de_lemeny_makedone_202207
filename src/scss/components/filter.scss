@@ -8,9 +8,10 @@
   padding: 0;
   margin: 0;
   inset: 4rem auto auto 0 !important;
-  transform : none !important;
+  transform: none !important;
   background-color: #3282F7;
 }
+
 #list-ingredients > li > a {
   color: white;
 }
@@ -24,9 +25,10 @@
   padding: 0;
   margin: 0;
   inset: 4rem auto auto 0 !important;
-  transform : none !important;
+  transform: none !important;
   background-color: #68D9A4
 }
+
 #list-appareils > li > a {
   color: white;
 }
@@ -40,32 +42,37 @@
 /* Tags */
 .tag {
   border-radius: 5px;
-  font-size : 0.8em;
+  font-size: 0.8em;
   padding: 0.3rem .6rem;
-  margin-right : 0.5rem;
+  margin-right: 0.5rem;
 }
+
 /* Ingredients tags */
 .tag-ingredient {
-  color : white;
+  color: white;
   background-color: #3282F7;
 }
+
 /* /Ingredients tags */
 /* Appareils tags */
 .tag-appareil {
-  color : white;
+  color: white;
   background-color: #68D9A4;
 }
+
 /* /Appareils tags */
 /* Ustensiles tags */
 .tag-ustensile {
-  color : white;
+  color: white;
   background-color: #ED6454;
 }
+
 /* /Ustensiles tags */
 
 .close-tag {
   margin-left: .5rem;
 }
+
 /* Filters */
 
 .filter-button {
@@ -74,13 +81,15 @@
 
 /* Animations */
 .filterFocus {
-  max-width: 100% ;
-  transition : width 0.3s ease-in-out;
+  max-width: 100%;
+  transition: width 0.3s ease-in-out;
 }
 
 #filter-container > *:not(.filterFocus) {
-  transition : width 0.3s ease-in-out;
-}/* /Animations */
+  transition: width 0.3s ease-in-out;
+}
+
+/* /Animations */
 
 /* Ingredient */
 #button-ingredients, #input-ingredients, #input-ingredients::placeholder, #filter-ingredients > .dropdown-menu, #filter-ingredients > .dropdown-menu > .dropdown-item {
@@ -129,8 +138,8 @@
   padding: 0;
   margin: 0;
   inset: 4rem auto auto 0 !important;
-  transform : none !important;
-  color : white;
+  transform: none !important;
+  color: white;
   background-color: #ED6454;
 }
 
@@ -146,13 +155,14 @@
 #list-ustensiles > li:hover > a {
   color: black;
 }
+
 /* /Ustensiles */
 
 /* Dropdown */
 .dropdown-menu {
   transition: all 0.3s ease-in-out;
   display: none;
-  flex-wrap : wrap;
+  flex-wrap: wrap;
   flex: 0 0 50%;
   max-height: 15rem;
   overflow-y: auto;

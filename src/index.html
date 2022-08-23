@@ -2,65 +2,90 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
   <title>Les petits plats</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script defer type="module" src="./js/main.js"></script>
+  <link crossorigin="anonymous"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+        integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+        referrerpolicy="no-referrer" rel="stylesheet"/>
+  <script defer src="./js/main.js" type="module"></script>
 </head>
 <body>
-    <div class="container py-4 px-3 mx-auto">
-      <div class="row">
-        <div class="col-12 text-center">
-          <img src="img/logo.png" alt="Logo" class="img-fluid">
-        </div>
-        <div class="input-group mb-3" id="searchbarContainer">
-          <input type="text" class="form-control" placeholder="Rechercher une recette" aria-label="Rechercher une recette" aria-describedby="button-search" id="searchbar">
-          <button class="btn btn-outline-secondary" type="button" id="button-search"><i class="fa-solid fa-magnifying-glass"></i></button>
-        </div>
-        <!-- Tags -->
-        <div class="tags-container d-inline-flex flex-wrap w-100 mb-3" id="tags-container">
-        </div>
-        <!-- /Tags -->
-        <!-- Filters -->
-        <div class="mb-3 w-100 d-flex justify-content-start" id="filter-container">
-          <div class="input-group mb-3 me-3 w-auto" id="filter-ingredients">
-            <input type="text" class="form-control filter-input" placeholder="Ingrédients" aria-label="Ingrédients" aria-describedby="button-ingredients" id="input-ingredients">
-            <button class="btn btn-outline-secondary filter-button dropdown-toggle dropdown-toggle-split" type="button" id="button-ingredients" aria-expanded="false"><i class="fa-solid fa-chevron-down" id="icon-ingredients"></i></button>
-            <div class="dropdown-container">
-              <ul class="dropdown-menu" id="list-ingredients">
-              </ul>
-            </div>
-
-          </div>
-          <div class="input-group mb-3 me-3 w-auto" id="filter-appareils">
-            <input type="text" class="form-control filter-input" placeholder="Appareils" aria-label="Appareils" aria-describedby="button-appareils" id="input-appareils">
-            <button class="btn btn-outline-secondary filter-button dropdown-toggle dropdown-toggle-split" type="button" id="button-appareils" aria-expanded="false"><i class="fa-solid fa-chevron-down" id="icon-appareils"></i></button>
-            <div class="dropdown-container">
-              <ul class="dropdown-menu" id="list-appareils">
-              </ul>
-            </div>
-          </div>
-          <div class="input-group mb-3 me-3 w-auto" id="filter-ustensiles">
-            <input type="text" class="form-control filter-input" placeholder="Ustensiles" aria-label="Ustensiles" aria-describedby="button-ustensiles" id="input-ustensiles">
-            <button class="btn btn-outline-secondary filter-button dropdown-toggle dropdown-toggle-split" type="button" id="button-ustensiles" aria-expanded="false"><i class="fa-solid fa-chevron-down" id="icon-ustensiles"></i></button>
-            <div class="dropdown-container">
-              <ul class="dropdown-menu" id="list-ustensiles">
-              </ul>
-            </div>
-          </div>
-        </div>
-        <!-- /Filters -->
+<div class="container py-4 px-3 mx-auto">
+  <div class="row">
+    <div class="col-12 text-center">
+      <img alt="Logo" class="img-fluid" src="img/logo.png">
     </div>
-  </div>
-    <!--- Recipes -->
-    <div class="py-5">
-      <div class="container">
+    <div class="input-group mb-3" id="searchbarContainer">
+      <input aria-describedby="button-search" aria-label="Rechercher une recette"
+             class="form-control"
+             id="searchbar" placeholder="Rechercher une recette" type="text">
+      <button class="btn btn-outline-secondary" id="button-search" type="button"><i
+        class="fa-solid fa-magnifying-glass"></i></button>
+    </div>
+    <!-- Tags -->
+    <div class="tags-container d-inline-flex flex-wrap w-100 mb-3" id="tags-container">
+    </div>
+    <!-- /Tags -->
+    <!-- Filters -->
+    <div class="mb-3 w-100 d-flex justify-content-start" id="filter-container">
+      <div class="input-group mb-3 me-3 w-auto" id="filter-ingredients">
+        <input aria-describedby="button-ingredients" aria-label="Ingrédients"
+               class="form-control filter-input"
+               id="input-ingredients" placeholder="Ingrédients"
+               type="text">
+        <button
+          aria-expanded="false"
+          class="btn btn-outline-secondary filter-button dropdown-toggle dropdown-toggle-split"
+          id="button-ingredients" type="button"><i
+          class="fa-solid fa-chevron-down" id="icon-ingredients"></i></button>
+        <div class="dropdown-container">
+          <ul class="dropdown-menu" id="list-ingredients">
+          </ul>
+        </div>
 
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="card-container">
-
+      </div>
+      <div class="input-group mb-3 me-3 w-auto" id="filter-appareils">
+        <input aria-describedby="button-appareils" aria-label="Appareils"
+               class="form-control filter-input"
+               id="input-appareils" placeholder="Appareils" type="text">
+        <button
+          aria-expanded="false"
+          class="btn btn-outline-secondary filter-button dropdown-toggle dropdown-toggle-split"
+          id="button-appareils" type="button"><i
+          class="fa-solid fa-chevron-down" id="icon-appareils"></i></button>
+        <div class="dropdown-container">
+          <ul class="dropdown-menu" id="list-appareils">
+          </ul>
+        </div>
+      </div>
+      <div class="input-group mb-3 me-3 w-auto" id="filter-ustensiles">
+        <input aria-describedby="button-ustensiles" aria-label="Ustensiles"
+               class="form-control filter-input"
+               id="input-ustensiles" placeholder="Ustensiles" type="text">
+        <button
+          aria-expanded="false"
+          class="btn btn-outline-secondary filter-button dropdown-toggle dropdown-toggle-split"
+          id="button-ustensiles" type="button"><i
+          class="fa-solid fa-chevron-down" id="icon-ustensiles"></i></button>
+        <div class="dropdown-container">
+          <ul class="dropdown-menu" id="list-ustensiles">
+          </ul>
         </div>
       </div>
     </div>
+    <!-- /Filters -->
+  </div>
+</div>
+<!--- Recipes -->
+<div class="py-5">
+  <div class="container">
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="card-container">
+
+    </div>
+  </div>
+</div>
 <!--- /Recipes -->
 </body>
 </html>
