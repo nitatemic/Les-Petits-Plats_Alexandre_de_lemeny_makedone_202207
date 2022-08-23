@@ -1,6 +1,6 @@
 import { addAChoice, removeAChoice } from "../tools/data.js";
 import { listAppareils, listIngredients, listUstensiles } from './filters';
-import { initFunction } from './recipes';
+import { forceSearch } from './recipes';
 
 export function createTag(type, value, restoreSession) {
 	if (!restoreSession) {
@@ -44,7 +44,8 @@ export function createTag(type, value, restoreSession) {
 	let icon = tagSpan.querySelector("i");
 	icon.addEventListener("click", function () {
 			removeTag(tag);
-			initFunction()
+			/* Re search the recipes */
+			forceSearch();
 		}
 		, false);
 	tag.appendChild(tagSpan);
@@ -91,9 +92,6 @@ export async function searchByTag(results) {
 	/* Get the session storage */
 	const userChoices = JSON.parse(sessionStorage.getItem("userChoices"));
 	if (userChoices.length === 0) {
-		listIngredients(results);
-		listAppareils(results);
-		listUstensiles(results);
 		return results;
 	}
 

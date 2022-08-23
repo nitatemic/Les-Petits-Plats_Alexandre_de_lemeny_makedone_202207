@@ -49,10 +49,20 @@ export async function initFunction() {
 
 document.getElementById('searchbar').addEventListener('keyup', async function (e) {
 	let keyword = e.target.value;
-	const result = await searchByTag(recipes)
+	const result = await searchByTag(recipes);
 	document.getElementById('card-container').innerHTML = ''; // Clear the container
 	const list = filterByKeyword(keyword, result);
 	list.forEach(recipe => {
 		document.getElementById('card-container').appendChild(returnDOM(recipe));
 	});
 });
+
+export async function forceSearch() {
+	let keyword = document.getElementById('searchbar').value;
+	const result = await searchByTag(recipes)
+	document.getElementById('card-container').innerHTML = ''; // Clear the container
+	const list = filterByKeyword(keyword, result);
+	list.forEach(recipe => {
+		document.getElementById('card-container').appendChild(returnDOM(recipe));
+	});
+}

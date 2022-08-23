@@ -1,7 +1,6 @@
 /* Events listeners on filter */
-import { recipes } from '../../data/recipes';
-import { createTag, searchByTag } from "./tags.js";
-import { initFunction } from './recipes.js';
+import { createTag } from "./tags.js";
+import { forceSearch } from './recipes.js';
 
 export const filterEvents = () => {
 
@@ -70,7 +69,17 @@ export const filterEvents = () => {
 			let ingredientsAvailable = [];
 			/* If the user has typed something, filter the dropdown list */
 			console.log(ingredientsAvailable);
-			//TODO : Need a function
+
+			/* Get list of available things */
+			/* Hide li that don't match the keyword */
+			/* If the user delete letters, show the list again */
+			dropdowns[index].querySelectorAll('li').forEach(li => {
+				if (li.innerText.toLowerCase().indexOf(keyword.toLowerCase()) > -1) {
+					li.style.display = 'block';
+				} else {
+					li.style.display = 'none';
+				}
+			});
 		});
 	});
 	//TODO : Event listener on dropdown  (https://getbootstrap.com/docs/5.2/components/dropdowns/#events)
@@ -107,8 +116,7 @@ export function addIngredients(listOfIngredients) {
 		let a = document.createElement('a');
 		a.addEventListener('click', () => {
 			createTag('ingredient', ingredient);
-			searchByTag(recipes);
-			initFunction();
+			forceSearch();
 		});
 		a.innerHTML = ingredient;
 		a.className = 'dropdown-item';
@@ -147,8 +155,7 @@ export function addAppareils(listOfAppareils) {
 		liDOM.id = `li-${appareil}`;
 		a.addEventListener('click', () => {
 			createTag('appareil', appareil);
-			searchByTag(recipes);
-			initFunction()
+			forceSearch();
 		});
 		a.innerHTML = appareil;
 		a.className = 'dropdown-item';
@@ -187,8 +194,7 @@ export function addUstensiles(listOfUstensiles) {
 		let a = document.createElement('a');
 		a.addEventListener('click', () => {
 			createTag('ustensile', ustensile);
-			searchByTag(recipes);
-			initFunction()
+			forceSearch();
 		});
 		a.innerHTML = ustensile;
 		a.className = 'dropdown-item';
@@ -207,8 +213,12 @@ export function addUstensiles(listOfUstensiles) {
  */
 export function filterByKeyword(keyword, list) {
 	let result = [];
+
 	if (keyword.length < 3) {
 		keyword = '';
+		listIngredients(list);
+		listAppareils(list);
+		listUstensiles(list);
 		result = list;
 	} else {
 		list.forEach(recipe => {
@@ -221,5 +231,8 @@ export function filterByKeyword(keyword, list) {
 			}
 		});
 	}
+	listIngredients(result);
+	listAppareils(result);
+	listUstensiles(result);
 	return result;
 }
