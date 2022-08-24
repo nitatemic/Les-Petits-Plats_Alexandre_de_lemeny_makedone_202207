@@ -64,20 +64,6 @@ export const filterEvents = () => {
 				dropdowns[index].classList.remove('dropdownFocus');
 			}
 			, false);
-		input.addEventListener('keyup', function (e) {
-			let keyword = e.target.value;
-
-			/* Get list of available things */
-			/* Hide li that don't match the keyword */
-			/* If the user delete letters, show the list again */
-			dropdowns[index].querySelectorAll('li').forEach(li => {
-				if (li.innerText.toLowerCase().indexOf(keyword.toLowerCase()) > -1) {
-					li.style.display = 'block';
-				} else {
-					li.style.display = 'none';
-				}
-			});
-		});
 	});
 	//TODO : Event listener on dropdown  (https://getbootstrap.com/docs/5.2/components/dropdowns/#events)
 };
