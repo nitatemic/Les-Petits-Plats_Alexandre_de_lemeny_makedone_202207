@@ -134,5 +134,3 @@ export async function searchByTag(results) {
 	await restoreSession()
 	return newResults;
 }
-
-

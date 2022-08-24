@@ -66,9 +66,6 @@ export const filterEvents = () => {
 			, false);
 		input.addEventListener('keyup', function (e) {
 			let keyword = e.target.value;
-			let ingredientsAvailable = [];
-			/* If the user has typed something, filter the dropdown list */
-			console.log(ingredientsAvailable);
 
 			/* Get list of available things */
 			/* Hide li that don't match the keyword */

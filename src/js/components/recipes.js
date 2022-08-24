@@ -1,5 +1,5 @@
 import { recipes } from '../../data/recipes.js';
-import { filterByKeyword } from './filters.js';
+import { filterByKeyword, listAppareils, listIngredients, listUstensiles } from './filters.js';
 import { searchByTag } from './tags.js';
 
 
@@ -41,6 +41,9 @@ export async function initFunction() {
 		sessionStorage.setItem('userChoices', JSON.stringify([]));
 	}
 	const list = await searchByTag(recipes)
+	listIngredients(list);
+	listAppareils(list);
+	listUstensiles(list);
 	document.getElementById('card-container').innerHTML = ''; // Clear the container
 	list.forEach(recipe => {
 		document.getElementById('card-container').append(returnDOM(recipe));
@@ -52,6 +55,7 @@ document.getElementById('searchbar').addEventListener('keyup', async function (e
 	const result = await searchByTag(recipes);
 	document.getElementById('card-container').innerHTML = ''; // Clear the container
 	const list = filterByKeyword(keyword, result);
+
 	list.forEach(recipe => {
 		document.getElementById('card-container').appendChild(returnDOM(recipe));
 	});
