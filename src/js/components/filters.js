@@ -95,6 +95,18 @@ export function listIngredients(result) {
 			ingredientsList.push(ingredient.ingredient);
 		});
 	});
+	/* Get local storage */
+	let userChoices = JSON.parse(sessionStorage.getItem('userChoices'));
+	if (userChoices !== null && userChoices.length > 0) {
+		/* Filter userChoices to keep only the ingredients */
+		userChoices = userChoices.filter(choice => choice.split(":")[0] === 'ingredient');
+
+		/* For each ingredient in the userChoices, remove it from the ingredientsList */
+		userChoices.forEach(choice => {
+			ingredientsList = ingredientsList.filter(ingredient => ingredient !== choice.split(":")[1]);
+		});
+	}
+
 	return addIngredients([...new Set(ingredientsList)].sort());
 }
 
@@ -135,6 +147,17 @@ export function listAppareils(result) {
 	result.forEach(recipe => {
 		appareilsList.push(recipe.appliance);
 	});
+
+	/* Get local storage */
+	let userChoices = JSON.parse(sessionStorage.getItem('userChoices'));
+	if (userChoices !== null && userChoices.length > 0) {
+		/* Filter userChoices to keep only the ingredients */
+		userChoices = userChoices.filter(choice => choice.split(":")[0] === 'appareil');
+		/* For each ingredient in the userChoices, remove it from the ingredientsList */
+		userChoices.forEach(choice => {
+			appareilsList = appareilsList.filter(appareil => appareil !== choice.split(":")[1]);
+		});
+	}
 	return addAppareils([...new Set(appareilsList)].sort());
 }
 
@@ -175,6 +198,17 @@ export function listUstensiles(result) {
 			ustensilesList.push(utensil);
 		});
 	});
+	/* Get local storage */
+	let userChoices = JSON.parse(sessionStorage.getItem('userChoices'));
+	if (userChoices !== null && userChoices.length > 0) {
+		/* Filter userChoices to keep only the ingredients */
+		userChoices = userChoices.filter(choice => choice.split(":")[0] === 'ustensile');
+		/* For each ingredient in the userChoices, remove it from the ingredientsList */
+		userChoices.forEach(choice => {
+			ustensilesList = ustensilesList.filter(ustensile => ustensile !== choice.split(":")[1]);
+		});
+	}
+
 	return addUstensiles([...new Set(ustensilesList)].sort());
 }
 
