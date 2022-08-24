@@ -236,17 +236,25 @@ export function filterByKeyword(keyword, list) {
 		listIngredients(list);
 		listAppareils(list);
 		listUstensiles(list);
-		result = list;
 	} else {
-		list.forEach(recipe => {
-			if (recipe.name.toLowerCase().includes(keyword.toLowerCase())
-				|| recipe.description.toLowerCase().includes(keyword.toLowerCase())
-				|| recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(
-					keyword.toLowerCase()))
-			) {
-				result.push(recipe);
+		for (let listIndex = 0; listIndex < list.length; listIndex++) {
+			let ingredientIsInside = false;
+			/* Search in ingredients */
+			for (let ingredientIndex = 0; ingredientIndex < list[listIndex].ingredients.length; ingredientIndex++) {
+				if (list[listIndex].ingredients[ingredientIndex].toString()
+				.toLowerCase() === keyword.toLowerCase()) {
+					result.push(list[listIndex]);
+					ingredientIsInside = true;
+					break;
+				}
 			}
-		});
+
+			if (list[listIndex].name.toLowerCase()
+			.includes(keyword.toLowerCase()) || list[listIndex].description.toLowerCase()
+			.includes(keyword.toLowerCase()) || ingredientIsInside) {
+				result.push(list[listIndex]);
+			}
+		}
 	}
 	listIngredients(result);
 	listAppareils(result);

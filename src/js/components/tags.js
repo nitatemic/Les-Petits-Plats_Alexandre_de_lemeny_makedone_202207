@@ -127,6 +127,7 @@ export async function searchByTag(results) {
 			newResults.push(result);
 		}
 	})
+
 	console.log(newResults);
 	await listIngredients(newResults);
 	await listAppareils(newResults);
