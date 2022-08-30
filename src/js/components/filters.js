@@ -236,6 +236,7 @@ export function filterByKeyword(keyword, list) {
 		listIngredients(list);
 		listAppareils(list);
 		listUstensiles(list);
+		return list
 	} else {
 		for (let listIndex = 0; listIndex < list.length; listIndex++) {
 			let ingredientIsInside = false;
