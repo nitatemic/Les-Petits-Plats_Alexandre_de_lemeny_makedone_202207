@@ -242,7 +242,8 @@ export function filterByKeyword(keyword, list) {
 			/* Search in ingredients */
 			for (let ingredientIndex = 0; ingredientIndex < list[listIndex].ingredients.length; ingredientIndex++) {
 				if (list[listIndex].ingredients[ingredientIndex].toString()
-				.toLowerCase() === keyword.toLowerCase()) {
+				.toLowerCase()
+				.includes(keyword.toLowerCase())) {
 					result.push(list[listIndex]);
 					ingredientIsInside = true;
 					break;
