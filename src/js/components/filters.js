@@ -64,8 +64,14 @@ export const filterEvents = () => {
 				dropdowns[index].classList.remove('dropdownFocus');
 			}
 			, false);
+		input.addEventListener('keyup', (e) => {
+			let keyword = e.target.value;
+			searchInFilters(input.id, keyword)
+
+		});
 	});
 	//TODO : Event listener on dropdown  (https://getbootstrap.com/docs/5.2/components/dropdowns/#events)
+
 };
 
 /**
@@ -252,4 +258,50 @@ export function filterByKeyword(keyword, list) {
 	listAppareils(result);
 	listUstensiles(result);
 	return result;
+}
+
+export async function searchInFilters(type, keyword) {
+	switch (type) {
+		case 'input-ingredients':
+			//Cacher les li qui ne correspondent pas à la recherche
+			let listIngredients = document.getElementById('list-ingredients');
+			let listIngredientsChildren = listIngredients.children;
+			for (let i = 0; i < listIngredientsChildren.length; i++) {
+				let ingredient = listIngredientsChildren[i].firstChild;
+				if (!ingredient.innerText.toLowerCase().includes(keyword.toLowerCase())) {
+					listIngredientsChildren[i].style.display = 'none';
+				} else {
+					listIngredientsChildren[i].style.display = 'block';
+				}
+			}
+			break;
+
+		case 'input-appareils':
+			//Cacher les li qui ne correspondent pas à la recherche
+			let listAppareils = document.getElementById('list-appareils');
+			let listAppareilsChildren = listAppareils.children;
+			for (let i = 0; i < listAppareilsChildren.length; i++) {
+				let appareils = listAppareilsChildren[i].firstChild;
+				if (!appareils.innerText.toLowerCase().includes(keyword.toLowerCase())) {
+					listAppareilsChildren[i].style.display = 'none';
+				} else {
+					listAppareilsChildren[i].style.display = 'block';
+				}
+			}
+			break;
+
+		case 'input-ustensiles':
+			//Cacher les li qui ne correspondent pas à la recherche
+			let listUstensiles = document.getElementById('list-ustensiles');
+			let listUstensilesChildren = listUstensiles.children;
+			for (let i = 0; i < listUstensilesChildren.length; i++) {
+				let ustensiles = listUstensilesChildren[i].firstChild;
+				if (!ustensiles.innerText.toLowerCase().includes(keyword.toLowerCase())) {
+					listUstensilesChildren[i].style.display = 'none';
+				} else {
+					listUstensilesChildren[i].style.display = 'block';
+				}
+			}
+			break;
+	}
 }
