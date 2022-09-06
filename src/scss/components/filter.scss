@@ -81,7 +81,13 @@
 
 /* Animations */
 .filterFocus {
-  max-width: 100%;
+  width: 100% !important;
+  transition: width 0.3s ease-in-out;
+}
+
+#filter-container {
+  display: flex;
+  gap: 1rem;
   transition: width 0.3s ease-in-out;
 }
 
@@ -122,6 +128,11 @@
 
 /* Ustensiles */
 
+#filter-ustensiles {
+  width: 100%;
+  transition: all 0.3s ease-in-out;
+}
+
 #button-ustensiles, #input-ustensiles, #input-ustensiles::placeholder, #filter-ustensiles > .dropdown-menu, #filter-ustensiles > .dropdown-menu > .dropdown-item {
   background-color: #ED6454;
   color: white;
@@ -134,12 +145,6 @@
 }
 
 #list-ustensiles {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  inset: 4rem auto auto 0 !important;
-  transform: none !important;
-  color: white;
   background-color: #ED6454;
 }
 
@@ -164,16 +169,24 @@
   display: none;
   flex-wrap: wrap;
   flex: 0 0 50%;
-  max-height: 15rem;
-  overflow-y: auto;
+  padding: 0;
+  margin: 0;
+  color: white;
+  position: absolute;
+  width: 100%;
+  max-height: 20rem;
+  overflow-x: scroll;
+  overflow-y: hidden;
 }
 
 .dropdown-container {
   width: 100%;
+  display: flex;
 }
 
 .dropdownFocus {
   display: flex;
+  flex-direction: column;
 }
 
 /* /Filters */

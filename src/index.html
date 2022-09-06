@@ -28,38 +28,36 @@
     </div>
     <!-- /Tags -->
     <!-- Filters -->
-    <div class="mb-3 w-100 d-flex justify-content-start" id="filter-container">
-      <div class="input-group mb-3 me-3 w-auto" id="filter-ingredients">
+    <div class="mb-3 w-100 d-flex" id="filter-container">
+
+      <div class="input-group mb-3 me-3 w-25" id="filter-ingredients">
         <input aria-describedby="button-ingredients" aria-label="Ingrédients"
                class="form-control filter-input"
-               id="input-ingredients" placeholder="Ingrédients"
+               data-bs-auto-close="outside" id="input-ingredients" placeholder="Ingrédients"
                type="text">
         <button
           aria-expanded="false"
           class="btn btn-outline-secondary filter-button dropdown-toggle dropdown-toggle-split"
           id="button-ingredients" type="button"><i
           class="fa-solid fa-chevron-down" id="icon-ingredients"></i></button>
-        <div class="dropdown-container">
-          <ul class="dropdown-menu" id="list-ingredients">
-          </ul>
-        </div>
-
+        <ul class="dropdown-menu" id="list-ingredients">
+        </ul>
       </div>
-      <div class="input-group mb-3 me-3 w-auto" id="filter-appareils">
+
+      <div class="input-group mb-3 me-3 w-25" id="filter-appareils">
         <input aria-describedby="button-appareils" aria-label="Appareils"
                class="form-control filter-input"
                id="input-appareils" placeholder="Appareils" type="text">
         <button
           aria-expanded="false"
           class="btn btn-outline-secondary filter-button dropdown-toggle dropdown-toggle-split"
-          id="button-appareils" type="button"><i
+          data-bs-auto-close="outside" id="button-appareils" type="button"><i
           class="fa-solid fa-chevron-down" id="icon-appareils"></i></button>
-        <div class="dropdown-container">
-          <ul class="dropdown-menu" id="list-appareils">
-          </ul>
-        </div>
+        <ul class="dropdown-menu" id="list-appareils">
+        </ul>
       </div>
-      <div class="input-group mb-3 me-3 w-auto" id="filter-ustensiles">
+
+      <div class="input-group mb-3 me-3 w-25" id="filter-ustensiles">
         <input aria-describedby="button-ustensiles" aria-label="Ustensiles"
                class="form-control filter-input"
                id="input-ustensiles" placeholder="Ustensiles" type="text">
@@ -68,11 +66,10 @@
           class="btn btn-outline-secondary filter-button dropdown-toggle dropdown-toggle-split"
           id="button-ustensiles" type="button"><i
           class="fa-solid fa-chevron-down" id="icon-ustensiles"></i></button>
-        <div class="dropdown-container">
-          <ul class="dropdown-menu" id="list-ustensiles">
-          </ul>
-        </div>
+        <ul class="dropdown-menu" id="list-ustensiles">
+        </ul>
       </div>
+
     </div>
     <!-- /Filters -->
   </div>

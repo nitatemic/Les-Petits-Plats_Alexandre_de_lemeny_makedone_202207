@@ -57,19 +57,35 @@ export const filterEvents = () => {
 				dropdowns[index].classList.add('dropdownFocus');
 			}
 			, false);
-		input.addEventListener('blur', () => {
+		input.addEventListener('keyup', (e) => {
+			/* If esc key is pressed, close the dropdown, remove the focus and clear the input */
+			if (e.keyCode === 27) {
 				filtersIcons[index].classList.remove('fa-chevron-up');
 				filtersIcons[index].classList.add('fa-chevron-down');
 				filtersDiv[index].classList.remove('filterFocus');
 				dropdowns[index].classList.remove('dropdownFocus');
+				input.blur();
+			} else {
+				let keyword = e.target.value;
+				searchInFilters(input.id, keyword)
 			}
-			, false);
-		input.addEventListener('keyup', (e) => {
-			let keyword = e.target.value;
-			searchInFilters(input.id, keyword)
-
 		});
 	});
+
+	dropdowns.forEach((dropdown, index) => {
+		dropdown.addEventListener('show.bs.dropdown', (e) => {
+			filtersDiv[index].classList.add('filterFocus');
+			filtersIcons[index].classList.remove('fa-chevron-down');
+			filtersIcons[index].classList.add('fa-chevron-up');
+			filtersDiv[index].classList.add('filterFocus');
+		});
+		dropdown.addEventListener('hide.bs.dropdown', (e) => {
+			filtersIcons[index].classList.remove('fa-chevron-up');
+			filtersIcons[index].classList.add('fa-chevron-down');
+			filtersDiv[index].classList.remove('filterFocus');
+		});
+	});
+
 	//TODO : Event listener on dropdown  (https://getbootstrap.com/docs/5.2/components/dropdowns/#events)
 
 };
