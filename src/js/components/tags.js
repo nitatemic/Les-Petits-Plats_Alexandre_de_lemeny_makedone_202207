@@ -56,8 +56,8 @@ export function createTag(type, value, restoreSession) {
 
 
 export function removeTag(tag) {
-	/* Get the id, replace - by : */
-	const tagID = tag.id.replace("-", ":");
+	/* Get the id, replace - by : with regex */
+	const tagID = tag.id.replace(/-/g, ":");
 	console.log(tagID);
 	switch (removeAChoice(tagID)) {
 
