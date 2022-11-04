@@ -40,14 +40,16 @@ export function createTag(type, value, restoreSession) {
 
 	const tagSpan = document.createElement("span");
 	tagSpan.className = "close-tag";
-	tagSpan.innerHTML = `${value} <i class='fa-regular fa-circle-xmark'></i>`;
-	let icon = tagSpan.querySelector("i");
+	tagSpan.innerText = `${value} `;
+	let icon = document.createElement("i");
+	icon.className = "fa-regular fa-circle-xmark";
 	icon.addEventListener("click", function () {
 			removeTag(tag);
 			/* Re search the recipes */
 			forceSearch();
 		}
 		, false);
+	tagSpan.appendChild(icon);
 	tag.appendChild(tagSpan);
 	tagsContainer.appendChild(tag);
 }
