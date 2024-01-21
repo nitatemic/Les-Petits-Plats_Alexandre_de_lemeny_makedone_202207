@@ -16,7 +16,7 @@
     "eslint-plugin-import": "^2.25.2",
     "sass": "^1.54.0",
     "snyk": "^1.996.0",
-    "vite": "^3.0.4",
+    "vite": "^3.2.8",
     "vitest": "^0.21.0"
   },
   "dependencies": {
